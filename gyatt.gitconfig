@@ -48,7 +48,7 @@
 	st = status
 	statuses = ! gits-status # todo: I should have a consistent rule on if I include aliases that would also be scripts added to path. For example, git-obv being both a script that git would find if you add the gyatt folder to the path and also an alias to said script, listed above. This comes to attention here because I'd like this to be both git-statuses and gits-status, the later of which won't be found on path by git. But this is an easy todo, really. (Currently, my answer is "yes", but I should ponder if my answer should be "no" for DRY or other reasons.)
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
-	signoff = ! git rebase --signoff --rebase-merges HEAD~$1 #TODO: need to use sh function? not sure if this works, haven't tested
+	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
 	t = tag
 	touch = ! touch "$@" && git add "$@"
 	w = whoami
