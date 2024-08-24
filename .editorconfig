@@ -1,0 +1,9 @@
+# In my text editor, I use 2-space indents normally, but git-config uses tab indents. For consistency (even though both work), I use this .editorconfig file to tell my editor to tab-indent the gyatt.gitconfig instead. See https://editorconfig.org/ for more details.
+# Since my text editor is notepad++, I had to install the plugin for notepad++ to get this to work. See https://github.com/editorconfig/editorconfig-notepad-plus-plus if you also need this.
+
+[*.gitconfig]
+indent_style = tab
+
+[*]
+end_of_line = lf
+insert_final_newline = true

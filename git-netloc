@@ -1,0 +1,2 @@
+#!/bin/bash
+git diff --numstat ${1:-HEAD}^ ${1:-HEAD} | awk 'BEGIN {add=0; del=0} /^([0-9]+)\t([0-9]+)\t/ {add += $1; del += $2} END {print add - del}' #TODO: is this even accurate? Does it handle multi-files correctly?
