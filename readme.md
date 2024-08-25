@@ -25,11 +25,14 @@ If gyatt is successfully included, the message will begin:
 
 If gyatt is NOT successfully included, the message will begin:
 
-- `git: 's' is not a git command. See 'git --help'.`
+`git: 's' is not a git command. See 'git --help'.`
 
 Or perhaps something like
-- ```warning: unable to access '/mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt': Is a directory
-fatal: bad config line 18 in file /home/user/.gitconfig``` if you made the same bone-headed mistake I did and tried to make the git include.path the directory of gyatt instead of the file itself.
+```
+warning: unable to access '/mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt': Is a directory
+fatal: bad config line 18 in file /home/user/.gitconfig
+```
+if you made the same bone-headed mistake I did and tried to make the git include.path the directory of gyatt instead of the file itself.
 
 You should also add the gyatt folder to your PATH on your operating system, so that various scripts that are too big to fit in the config are runnable.
 
