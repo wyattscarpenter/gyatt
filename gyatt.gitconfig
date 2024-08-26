@@ -20,6 +20,9 @@
 	d = diff --word-diff=color
 	dugc = ! du --summarize --human-readable --block-size=MiB . && git gc --aggressive && du --summarize --human-readable --block-size=MiB .
 	f = fetch --all
+	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
+	fgg = ! git f && git gg # For some reason all of {fg, fgg, fggg} seem to do fgg? Also, on git for windows at least, it seems f doesn't print any output.
+	fggg = ! git f && git ggg
 	find-and-replace = !git grep -I --name-only "$1" | xargs sed -i "s/$1/$2/g"
 	forsake = abandon
 	g = ! git log --all --graph --pretty=format:'%C(bold blue)%as %Cgreen%ad%Creset %C(auto)%h%d %s %C(bold black)<%aN>%Creset' --date=format-local:'%H:%M (%a)' #format inspired by https://gist.github.com/niun/ca61a37791ff1fdc9b33 # The ! git part is necessary, or else this does not work on Windows (replacing with double quotes will not cure the problem either). # I later decided to add a unix call as well for the net loc
@@ -53,6 +56,8 @@
 	touch = ! touch "$@" && git add "$@"
 	w = whoami
 	whoami = ! git config --get user.name && git config --get user.email
+[commit]
+	verbose = true
 [credential]
 	useHttpPath = true
 [diff]
