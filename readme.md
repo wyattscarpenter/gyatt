@@ -74,7 +74,7 @@ One of the weird things about github is that most of their value-adds are things
 
 This might finally implement something I've been thinking about which is the ability to mark git repos as COMPLETE within the software itself (this would show up in the status, and possibly also as a COMPLETE file). And maybe other statuses a project can have. A STATUS file?
 
-My readme about this project should complain about git, its usability, its inability to handle large files, link to the handmade hero parody of git ( https://www.youtube.com/watch?v=3a37D4NWRbg ) which suggests I guess maybe using svn, caution against using git, say that I have mastered git but maybe you shouldn't, maybe link to other things written about git, etc.
+My readme about this project should complain about git, its usability, its inability to handle large files, link to the handmade hero parody of git ( https://www.youtube.com/watch?v=3a37D4NWRbg ) which suggests I guess maybe using svn, caution against using git, say that I have mastered git but maybe you shouldn't, maybe link to other things written about git, etc. 'Wait, what's a "ref"? What's a "tree-ish"? What, pray tell, is a "working tree", and how is that different from an "index"...?'
 
 ## coda
 

@@ -34,7 +34,7 @@
 	ll = log -5
 	ln = ! f() { ln -s "$@"; git add "$@" } f #this will also git add the non-link file; if you don't want this, don't use this git-ln script! #TODO: untested; not sure about the function syntax
 	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
-	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit.
+	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit. # TODO: ideally this should also be able to handle `git move from to`... also should abort if there are any unsaved changes, unless you --force. But this means I'll have to write my own shell script...
 	nocheckin = ! git-nocheckin # this sets up the nocheckin *system*. as opposed to git nocheckins, which checks for *tokens* of nocheckin
 	nocheckins = git diff --staged -i --diff-filter=d -G "no""checkin" # Checks for the existence of the forbidden string
 	netloc = ! git-netloc
