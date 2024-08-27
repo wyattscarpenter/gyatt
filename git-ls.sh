@@ -1,4 +1,4 @@
-echo "\e[7m[STATUS]\e[0m"
+echo "\e[7m[STATUS]\e[0m" # TODO: on git-for-windows, this writes out literally instead of as colored text?
   git status
 echo
 echo "\e[7m[LOGHEAD]\e[0m"
