@@ -54,6 +54,7 @@
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
 	t = tag
 	touch = ! touch "$@" && git add "$@"
+	touchx = ! touch "$@" && git add --chmod=+x "$@"
 	w = whoami
 	whoami = ! git config --get user.name && git config --get user.email
 [commit]
