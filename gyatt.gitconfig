@@ -23,7 +23,7 @@
 	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
 	fgg = ! git f && git gg # For some reason all of {fg, fgg, fggg} seem to do fgg? Also, on git for windows at least, it seems f doesn't print any output.
 	fggg = ! git f && git ggg
-	fsg = ! git f && git s && git gg # This is basically what I always want to do to look at the current state of a git repo. Could use a better alias, perhaps. Also collides with what I'm currently calling "git ls", right now, a little bit.
+	fsg = ! git f && git s && git gg # This is basically what I always want to do to look at the current state of a git repo. Could use a better alias, perhaps. Also collides with what I'm currently calling "git survey", right now, a little bit.
 	find-and-replace = !git grep -I --name-only "$1" | xargs sed -i "s/$1/$2/g"
 	forsake = abandon
 	g = ! git log --all --graph --pretty=format:'%C(bold blue)%as %Cgreen%ad%Creset %C(auto)%h%d %s %C(bold black)<%aN>%Creset' --date=format-local:'%H:%M (%a)' #format inspired by https://gist.github.com/niun/ca61a37791ff1fdc9b33 # The ! git part is necessary, or else this does not work on Windows (replacing with double quotes will not cure the problem either). # I later decided to add a unix call as well for the net loc
@@ -33,7 +33,7 @@
 	l = log
 	ll = log -5
 	ln = ! f() { ln -s "$@"; git add "$@" } f #this will also git add the non-link file; if you don't want this, don't use this git-ln script! #TODO: untested; not sure about the function syntax
-	ls = ! git-ls.sh #this one should probably get a different alias idk # it would also be nice to have a git ls that was like `git ls-files --stage --abbrev`
+	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
 	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit.
 	nocheckin = ! git-nocheckin # this sets up the nocheckin *system*. as opposed to git nocheckins, which checks for *tokens* of nocheckin
 	nocheckins = git diff --staged -i --diff-filter=d -G "no""checkin" # Checks for the existence of the forbidden string
@@ -49,10 +49,11 @@
 	remove-from-history = ! git-remove-from-history #todo: can this be inlined here?
 	replace-all-in-history = ! git-replace-all-in-history #todo: can this be inlined here?
 	s = status
-	st = status
-	statuses = ! gits-status # todo: I should have a consistent rule on if I include aliases that would also be scripts added to path. For example, git-obv being both a script that git would find if you add the gyatt folder to the path and also an alias to said script, listed above. This comes to attention here because I'd like this to be both git-statuses and gits-status, the later of which won't be found on path by git. But this is an easy todo, really. (Currently, my answer is "yes", but I should ponder if my answer should be "no" for DRY or other reasons.) # It seems like maybe all of the scripts are going to have to be named git-whatever.sh, and then the alias sends whatever to ! git-whatever.sh, for the simple reason that otherwise git-for-windows will find git-whatever the file first, and will error on failing to execute it.
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
+	st = s
+	statuses = ! gits-status # todo: I should have a consistent rule on if I include aliases that would also be scripts added to path. For example, git-obv being both a script that git would find if you add the gyatt folder to the path and also an alias to said script, listed above. This comes to attention here because I'd like this to be both git-statuses and gits-status, the later of which won't be found on path by git. But this is an easy todo, really. (Currently, my answer is "yes", but I should ponder if my answer should be "no" for DRY or other reasons.) # It seems like maybe all of the scripts are going to have to be named git-whatever.sh, and then the alias sends whatever to ! git-whatever.sh, for the simple reason that otherwise git-for-windows will find git-whatever the file first, and will error on failing to execute it.
+	survey = ! git-survey.sh
 	t = tag
 	touch = ! touch "$@" && git add "$@"
 	touchx = ! touch "$@" && git add --chmod=+x "$@"
