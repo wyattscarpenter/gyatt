@@ -23,6 +23,7 @@
 	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
 	fgg = ! git f && git gg # For some reason all of {fg, fgg, fggg} seem to do fgg? Also, on git for windows at least, it seems f doesn't print any output.
 	fggg = ! git f && git ggg
+	fsg = ! git f && git s && git gg # This is basically what I always want to do to look at the current state of a git repo. Could use a better alias, perhaps. Also collides with what I'm currently calling "git ls", right now, a little bit.
 	find-and-replace = !git grep -I --name-only "$1" | xargs sed -i "s/$1/$2/g"
 	forsake = abandon
 	g = ! git log --all --graph --pretty=format:'%C(bold blue)%as %Cgreen%ad%Creset %C(auto)%h%d %s %C(bold black)<%aN>%Creset' --date=format-local:'%H:%M (%a)' #format inspired by https://gist.github.com/niun/ca61a37791ff1fdc9b33 # The ! git part is necessary, or else this does not work on Windows (replacing with double quotes will not cure the problem either). # I later decided to add a unix call as well for the net loc
