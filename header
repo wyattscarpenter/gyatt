@@ -1,1 +1,1 @@
-echo -e "\n\e[7m[$@]\e[0m"
+printf "\n\e[7m[$@]\e[0m\n"

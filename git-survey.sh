@@ -1,12 +1,12 @@
 underline_quine () {
-  echo -e "\e[4m$@\e[0m"
+  printf "\e[4m$*\e[0m\n"
   $@
 }
 header STATUS
   git status
 header LOGHEAD
   git log -n 1
-header IDENTITY & CREDENTIAL CONFIGS
+header 'IDENTITY & CREDENTIAL CONFIGS'
   underline_quine git whoami
   underline_quine git config credential.helper
   underline_quine git config credential.useHttpPath
