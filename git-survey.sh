@@ -1,7 +1,3 @@
-header () {
-  echo -e "\n\e[7m[$@]\e[0m"
-}
-
 underline_quine () {
   echo -e "\e[4m$@\e[0m"
   $@

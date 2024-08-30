@@ -18,7 +18,7 @@
 	chomd = chmod
 	conforg = config --show-origin
 	cp = cherry-pick # I might regret this alias later, since cp can also mean "copy", and there's, like, a git mv already that a git cp could exist in analogy to.
-	d = ! echo '[STAGED]' && git diff --word-diff=color --staged && echo '[WORKING]' && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
+	d = ! header STAGED && git diff --word-diff=color --staged && header WORKING && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
 	dugc = ! du --summarize --human-readable --block-size=MiB . && git gc --aggressive && du --summarize --human-readable --block-size=MiB .
 	f = fetch --all
 	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
