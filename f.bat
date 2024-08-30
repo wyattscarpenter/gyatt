@@ -1,0 +1,1 @@
+cmd /K git fsg
