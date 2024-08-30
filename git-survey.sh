@@ -1,3 +1,7 @@
+underline_quine () {
+  echo -e "\e[4m$@\e[0m"
+  $@
+}
 echo -e "\e[7m[STATUS]\e[0m"
   git status
 echo
@@ -5,9 +9,9 @@ echo -e "\e[7m[LOGHEAD]\e[0m"
   git log -n 1
 echo
 echo -e "\e[7m[IDENTITY & CREDENTIAL CONFIGS]\e[0m"
-  quine git whoami
-  quine git config credential.helper
-  quine git config credential.useHttpPath
+  underline_quine git whoami
+  underline_quine git config credential.helper
+  underline_quine git config credential.useHttpPath
 echo
 echo -e "\e[7m[ORIGIN]\e[0m"
   git remote show origin | grep "URL\|up to date\|local out of date"
