@@ -1,8 +1,9 @@
 #!/bin/bash
 set -euo pipefail #bash strict mode
-[ "$#" -lt 2 ] && echo USAGE: "$0 (+|-)x files_to_chmod_x..." && echo && echo "IMPLEMENTATION:" && cat "$0" && echo && exit 22 #usage message for invalid number of arguments
+[ "$#" -lt 1 ] && echo USAGE: "$0 [(+|-)[x]] files_to_chmod_x..." && echo && echo "IMPLEMENTATION:" && cat "$0" && echo && exit 22 #usage message for invalid number of arguments
 
 # This command allows you to run `git chmod +x` or `git chmod -x` on a file or files to chmod them (CHange file MODe).
+# `git chmod` with no +x or -x will pretend you called it with +x. That's usually why someone chmods something, in my experience.
 # As usual, git will only track the executable bit of the file mode (basically).
 # `git ls-tree HEAD` will tell you whether the files are non-executable, in which case they will be `100644`, or executable, in which case they will be `100755`.
 # `ls -al` will tell you the mode of the files on your filesystem (as opposed to the git account of your file modes).
@@ -10,14 +11,25 @@ set -euo pipefail #bash strict mode
 # Similarly, you cannot chmod the executable bit on a directory in git. You can do it on unix, however, but it will basically render the directory opaque to you, which is basically never useful. So, don't do that. In fact, this script will stop you from doing so.
 # Normally, git will track the mode of your files automatically. However, this script has two advantages. The first advantage, which is slight, is that the change to file mode will be automatically staged in git, so you don't have to `git add` the file (this is similar to how if you `git mv` a file instead of regular mv you don't have to do further git bookkeeping about it). The other advantage is that if `git config core.fileMode` is false, git will not automatically track your local file modes, but this script will change them. That config is set to false on git for windows, as windows' NTFS lacks executable bits. (Although on WSL it can be true in the right circumstances.)
 
-flag="$1"
-if [ "$flag" != "-x" ] && [ "$flag" != "+x" ]; then
-  # This is the error message and return code from the git command. Although the git command prints to stderr and we print to stdout (this could be changed)
-  echo "error: option 'chmod' expects \"+x\" or \"-x\""
-  exit 129
-fi
+warn () {
+  echo "$@" >&2 #Sending this output to stderr.
+}
 
-shift
+flag="$1"
+if [ "$flag" == "-x" ] || [ "$flag" == "+x" ]; then
+  shift
+elif [ "$flag" == "-" ]; then
+  warn "First argument is -; I'm assuming this means -x."
+  flag="-x"
+  shift
+elif [ "$flag" == "+" ]; then
+  warn "First argument is +; I'm assuming this means +x."
+  flag="+x"
+  shift
+else
+  warn "First argument is neither +x nor -x; using +x implicitly."
+  flag="+x"
+fi
 
 for f in "$@"; do
   if [ -d "$f" ]; then
@@ -27,12 +39,12 @@ for f in "$@"; do
   fi
 done
 
-echo
-echo "======================================== Local chmod actions ========================================"
-echo
+header () {
+  printf "\n======================================== $* ========================================\n\n"
+}
+
+header Local chmod actions
 chmod --verbose "$flag" "$@"
-echo
-echo "======================================== Git internal actions ========================================" #this command prints "actions" like "add 'foo'" and "chmod +x 'foo'", but I'm pretty sure these are merely analogous, or I wouldn't have had to write this whole git-chmod script (if git had a literal chmod command already, or if regular chmod always worked"
-echo
-git update-index --verbose --chmod="$flag" "$@"
-echo
+
+header Git internal actions
+git update-index --verbose --chmod="$flag" "$@" # This command prints "actions" like "add 'foo'" and "chmod +x 'foo'", but I'm pretty sure these are merely analogous, or I wouldn't have had to write this whole git-chmod script (if git had a literal chmod command already, or if regular chmod always worked"
