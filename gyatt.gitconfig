@@ -5,7 +5,7 @@
 	abandon = reset --hard @{upstream} #abandon the local copy and switch to origin
 	amend = git commit -a --amend --no-edit #this also amends unstaged changes, which is what I want half the time, but half the time is not what I want.
 	b = branch --verbose
-	bash = ! bash -c # This allows me to execute commands in the bash that comes bundled with git-for-windows, if need be (the need is quite rare. Note that you typically have to quote the argument to this. Eg, git bash "python -m rich"
+	bash = ! bash -c # This allows me to execute commands in the bash that comes bundled with git-for-windows, if need be (the need is quite rare. Note that you typically have to quote the argument to this. Eg, git bash "python -m rich". Because otherwise they're just further arguments to bash I guess.
 	be = ! git-be
 	br = b
 	blast = ! git-blast
