@@ -19,7 +19,8 @@
 	conforg = config --show-origin
 	cp = cherry-pick # I might regret this alias later, since cp can also mean "copy", and there's, like, a git mv already that a git cp could exist in analogy to.
 	d = ! header STAGED && git diff --word-diff=color --staged && header WORKING && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
-	dugc = ! du --summarize --human-readable --block-size=MiB . && git gc --aggressive && du --summarize --human-readable --block-size=MiB .
+	du = ! printf '%s (%s) %s\n' `du --summarize --human-readable --block-size=MiB $(git root) | cut -f 1` `du --summarize --human-readable --block-size=KiB $(git root)` # (would like to use c-printf-standard %3$s stuff here, to discard additional arguments, but apparently bash printf does not (yet?) support that)
+	dugc = ! git du && git gc --aggressive && git du
 	f = fetch --all
 	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
 	fgg = ! git f && git gg # For some reason all of {fg, fgg, fggg} seem to do fgg? Also, on git for windows at least, it seems f doesn't print any output.
@@ -49,6 +50,7 @@
 	rebforsake = ! git checkout --theirs . && git rebcont # This command is for when there's a conflict in the middle of a rebase and you want to just let the other changes (say, from upstream) win instead of manually reconciling them. #todo: also make mergecont and mergeforsake?
 	remove-from-history = ! git-remove-from-history #todo: can this be inlined here?
 	replace-all-in-history = ! git-replace-all-in-history #todo: can this be inlined here?
+	root = rev-parse --show-toplevel
 	s = status
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
