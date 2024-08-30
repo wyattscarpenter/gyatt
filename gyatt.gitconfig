@@ -5,6 +5,7 @@
 	abandon = reset --hard @{upstream} #abandon the local copy and switch to origin
 	amend = git commit -a --amend --no-edit #this also amends unstaged changes, which is what I want half the time, but half the time is not what I want.
 	b = branch --verbose
+	bash = ! bash -c # This allows me to execute commands in the bash that comes bundled with git-for-windows, if need be (the need is quite rare. Note that you typically have to quote the argument to this. Eg, git bash "python -m rich"
 	be = ! git-be
 	br = b
 	blast = ! git-blast
@@ -17,7 +18,7 @@
 	chomd = chmod
 	conforg = config --show-origin
 	cp = cherry-pick # I might regret this alias later, since cp can also mean "copy", and there's, like, a git mv already that a git cp could exist in analogy to.
-	d = diff --word-diff=color
+	d = ! echo '[STAGED]' && git diff --word-diff=color --staged && echo '[WORKING]' && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
 	dugc = ! du --summarize --human-readable --block-size=MiB . && git gc --aggressive && du --summarize --human-readable --block-size=MiB .
 	f = fetch --all
 	fg = ! git f && git g # Not to be confused with the fg command of the unix world.
@@ -44,8 +45,8 @@
 	pffush = push --force-with-lease # the second-safest type of force push
 	r = remote -v
 	reb = rebase
-	rebcont = ! git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
-	rebforsake = ! git checkout --theirs . && git rebcont #todo: also make mergecont and mergeforsake?
+	rebcont = ! git diff --check && git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
+	rebforsake = ! git checkout --theirs . && git rebcont # This command is for when there's a conflict in the middle of a rebase and you want to just let the other changes (say, from upstream) win instead of manually reconciling them. #todo: also make mergecont and mergeforsake?
 	remove-from-history = ! git-remove-from-history #todo: can this be inlined here?
 	replace-all-in-history = ! git-replace-all-in-history #todo: can this be inlined here?
 	s = status
