@@ -2,8 +2,10 @@
 # If you modify any of these lines (without making a pull request with the new changes to gyatt (or, I suppose, removing these comment lines so that this file no longer claims to be gyatt)), then for your own sake as well as mine I recommend you leave a comment by the option with YOUR NAME and why you've done what you've done. This will help you later if you need to locate problems.
 # This file is alphabetized for quick reference (normal gitconfig files are not alphabetized — they are simply in whatever chronological order the options were set from the command line — but this one was written by hand, so I did alphabetize it). First by section, then within each section by each option. This means you will probably want to skip past the [alias] section at first to check out the options at the bottom, which are likely to be more important to you.
 [alias]
-	abandon = reset --hard @{upstream} #abandon the local copy and switch to origin
-	amend = git commit -a --amend --no-edit #this also amends unstaged changes, which is what I want half the time, but half the time is not what I want.
+	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin.
+	amend = commit --amend --no-edit # Note that this does not amend with unstaged changes, which is what I want half the time, but half the time is not what I want.
+	amendall = commit -a --amend --no-edit # This also amends using the unstaged changes, which is what I want half the time, but half the time is not what I want.
+	amendallall = ! git add -A ; git commit -a --amend --no-edit # This also amends using untracked files, which are now tracked. This is rarely wanted, but sometimes convenient.
 	b = branch --verbose
 	bash = ! bash -c # This allows me to execute commands in the bash that comes bundled with git-for-windows, if need be (the need is quite rare. Note that you typically have to quote the argument to this. Eg, git bash "python -m rich". Because otherwise they're just further arguments to bash I guess.
 	be = ! git-be
