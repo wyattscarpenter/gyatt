@@ -1,0 +1,4 @@
+#!/bin/sh
+#this will also git add the non-link file; if you don't want this, don't use this git-ln script!
+ln -s "$@" #TODO: git ln -s is making a copy in git-for-windows?
+git add "$@"
