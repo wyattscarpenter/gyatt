@@ -18,6 +18,7 @@
 	cherrypick = cherry-pick
 	chmod = ! git-chmod
 	chomd = chmod
+	clear = git move @
 	conforg = config --show-origin
 	cp = cherry-pick # I might regret this alias later, since cp can also mean "copy", and there's, like, a git mv already that a git cp could exist in analogy to.
 	d = ! header STAGED && git diff --word-diff=color --staged && header WORKING && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
