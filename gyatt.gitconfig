@@ -55,6 +55,7 @@
 	root = rev-parse --show-toplevel
 	s = status
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
+	ss = s -s
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
 	st = s
 	statuses = ! gits-status # todo: I should have a consistent rule on if I include aliases that would also be scripts added to path. For example, git-obv being both a script that git would find if you add the gyatt folder to the path and also an alias to said script, listed above. This comes to attention here because I'd like this to be both git-statuses and gits-status, the later of which won't be found on path by git. But this is an easy todo, really. (Currently, my answer is "yes", but I should ponder if my answer should be "no" for DRY or other reasons.) # It seems like maybe all of the scripts are going to have to be named git-whatever.sh, and then the alias sends whatever to ! git-whatever.sh, for the simple reason that otherwise git-for-windows will find git-whatever the file first, and will error on failing to execute it. #actually you can also fix that by putting a shebang at the top of the file, so I guess it's just a quirk of git.
