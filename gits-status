@@ -1,3 +1,3 @@
 # I don't know why, but this gives me bad-config-line error if I try to put it in the gitconfig
 find . -name .git -execdir pwd \; -execdir git status -s \; -execdir grep "local out of date" <<<`git remote show origin` \; #TODO: (NOCHECKIN) this last thing doesn't work, oddly, unless you're in the folder itself, when it should work when you recurse to any depth.'
-#TODO: probably want to list if the repos have any stashed changes (git stash list), too, since the idea is to find out if they're all clean and up-to-date. #TODO: This also sort of implies I should check them for todos as well... cheeky little git grep todo I guess. Maybe make that a second command called git-perfect. Give it the ol' "if only I could wipe away the impurities" epigraph, as well.
+#TODO: this would be more useful if used with git-ok?
