@@ -1,6 +1,7 @@
 # This is gyatt. See https://github.com/wyattscarpenter/gyatt
 # If you modify any of these lines (without making a pull request with the new changes to gyatt (or, I suppose, removing these comment lines so that this file no longer claims to be gyatt)), then for your own sake as well as mine I recommend you leave a comment by the option with YOUR NAME and why you've done what you've done. This will help you later if you need to locate problems.
 # This file is alphabetized for quick reference (normal gitconfig files are not alphabetized — they are simply in whatever chronological order the options were set from the command line — but this one was written by hand, so I did alphabetize it). First by section, then within each section by each option. This means you will probably want to skip past the [alias] section at first to check out the options at the bottom, which are likely to be more important to you.
+# See also: https://git-scm.com/docs/git-config#_configuration_file
 [alias]
 	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin.
 	amend = commit --amend --no-edit # Note that this does not amend with unstaged changes, which is what I want half the time, but half the time is not what I want.
@@ -44,7 +45,7 @@
 	nocheckins = git diff --staged -i --diff-filter=d -G "no""checkin" # Checks for the existence of the forbidden string
 	netloc = ! git-netloc
 	obv = ! git-obv # Honestly I don't know why we can't just put this script in this line directly. But it gives us "fatal: bad config line", at least in git version 2.45.2.windows.1
-	ok = ! git status --short && git stash list && git "to""do" && git grep -i "no""checkin" && git check #TODO: check if up-to-date with upstream? also check if all tags pushed to upstream? #this command checks if a repo is "ok", and lists any ways in which it is not "ok". “This world is imperfect; if only I could wipe away the impurities, and make it as beautiful as ME.” —https://www.youtube.com/watch?v=DN9DW4rrEjY
+	ok = ! git status --short && git stash list && git "to""do" && git grep -i "no""checkin" && git check #TODO: check if up-to-date with upstream? also check if all tags pushed to upstream? Also all git notes pushed to upstream? And all submodules are up to date?? And all subtrees (I guess you don't have to do anything special for git subtree, so maybe that's "for free")?? #this command checks if a repo is "ok", and lists any ways in which it is not "ok". “This world is imperfect; if only I could wipe away the impurities, and make it as beautiful as ME.” —https://www.youtube.com/watch?v=DN9DW4rrEjY
 	po = push --set-upstream origin HEAD
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
