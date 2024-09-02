@@ -8,6 +8,6 @@ if [ -e .git/hooks/pre-commit ] && [ "$1" != "-f" ] ; then
   echo "ERROR: .git/hooks/pre-commit already exists, and I wouldn't want to overwrite it. Pass -f to overwrite it."
   exit 1
 else
-  echo 'exit `git nocheckins 1>&2 | wc -l`' >.git/hooks/pre-commit
+  echo '#!/bin/sh\nexit `git nocheckins 1>&2 | wc -l`' >.git/hooks/pre-commit
   chmod +x .git/hooks/pre-commit
 fi
