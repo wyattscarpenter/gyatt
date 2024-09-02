@@ -8,6 +8,6 @@ if [ -e .git/hooks/pre-commit ] && [ "$1" != "-f" ] ; then
   echo "ERROR: .git/hooks/pre-commit already exists, and I wouldn't want to overwrite it. Pass -f to overwrite it."
   exit 1
 else
-  printf '#!/bin/sh\n! git no""checkins\n' >.git/hooks/pre-commit # Remember: git grep will return 1 iff nothing is found. So, we invert that using !. #Wait... git nocheckins doesn't use grep, it uses git diff, which always returns 0...
+  printf '#!/bin/sh\n! git no""checkins\n' >.git/hooks/pre-commit # Remember: git grep will return 1 iff nothing is found. So, we invert that using !.
   chmod +x .git/hooks/pre-commit
 fi
