@@ -8,6 +8,8 @@ Gyatt is my suite of git aliases and configurations. I have quite a few.
 
 Git + Wyatt (my name)
 
+## status of project
+
 ## installation
 
 Get gyatt by either doing a git clone of it or downloading it from https://github.com/wyattscarpenter/gyatt/archive/refs/heads/master.zip
@@ -36,7 +38,13 @@ if you made the same bone-headed mistake I did and tried to make the git include
 
 You should also add the gyatt folder to your PATH on your operating system, so that various scripts that are too big to fit in the config are runnable.
 
+### software you must have installed in order to use gyatt
+
+Gyatt depends on git
+
 Git depends on sh/bash for a lot of things. This is bad. However, parts of gyatt also depend on sh/bash. They could pretty easily be rewritten to not so depend — I mean this in merely the cosmic sense. They're just little programs so it would be easy to rewrite them; however it would be a chunk of effort perhaps best spent elsewhere. If git the project is going to keep relying on sh/bash (not to mention perl!) for so many things, thus necessitating any git installation (like git-for-windows, for example)also lugs those around with it, then there's no point in rewriting gyatt to not need them. In some halcyon future where git is freed of that dependency— which, to be clear, they aren't even working towards, as far as I can tell (which, in the cosmic sense, is fine)— maybe I'd rewrite the components of gyatt that also so depend.
+
+Gyatt's du uses a feature that is a GNU extension of du, as far as I can tell (comma-delimitation based on locale).
 
 ## warnings
 
