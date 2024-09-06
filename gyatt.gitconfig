@@ -75,6 +75,8 @@
 	useHttpPath = true
 [diff]
 	wsErrorHighlight = all
+[gc]
+	auto = 0 # Disables automatic garbage collection. See Gyatt readme for more on why this is a good idea.
 [init]
 	defaultBranch = master
 [rerere]
