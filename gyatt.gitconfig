@@ -40,7 +40,10 @@
 	ll = log -5
 	ln = ! git-ln
 	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
+	mb = move-branch
 	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit. # TODO: ideally this should also be able to handle `git move from to`... also should abort if there are any unsaved changes, unless you --force. But this means I'll have to write my own shell script...
+	move-br = move-branch
+	move-branch = move
 	nocheckin = ! git-nocheckin # this sets up the nocheckin *system*. as opposed to git nocheckins, which checks for *tokens* of nocheckin
 	nocheckins = grep --cached --line-number -i \\\\bno""checkin\\\\b # Checks for the existence of the forbidden string # I don't really understand why you need to quadruple backslash here, instead of 1 or 2, but ok. The "" in the middle is just so that it doesn't pick up itself, which I do where I can (not on the left side, for example; it's impossible there).  # --cached is the old way of writing --staged, and we have to use it here, at least in my version of git. # Note that if git commit -am is called (and nocheckins is called in the pre-commit), the changes will be staged temporarily, then this command will run; so it does work correctly for pre-commit purposes. # "Of course, the pre-commit flash flash step paid ability window lil yatchy laptop!"
 	netloc = ! git-netloc
