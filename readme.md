@@ -106,6 +106,10 @@ My readme about this project should complain about git, its usability, its inabi
 
 (spoiler: "tree" is git for directory (despite the fact that git history is... also a tree (technically, a DAG). After you know this, a lot of git things make a lot more sense. git subtree, for example. (Not that I've ever used git subtree. But at least I understand its man page now.))
 
+## contributing
+
+If you want to contribute to this project, first of all: thanks! Second of all, please note that your contributions will be released into the public domain under the license of this project. Third of all, note that you should probably use the full names of flags for commands, as this will save everyone a lot of time when trying to figure out what the command does. and, fourthly, note that I reserve the right to be a terrible maintainer, take a long time to review everything, and reject your very sensible changes because they aren't exactly precisely what I want for this project — or even just out of mere caprice!
+
 ## coda
 
 And remember the ancient wisdom: “a voluptuous charmer takes food; a scoundrel is cursed to dwell restlessly in strange places”.
