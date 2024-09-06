@@ -26,11 +26,13 @@ By the way, Gyatt has no tests. It's been working out pretty well so far. Especi
 
 It seems to me like it would be highly inadvisable to use gyatt commands in a shell script. Due to the additional complications of installing gyatt on top of git as a prerequisite. If you like some Gyatt command, you can just include the right-hand side of the alias in your script. Include a comment by it saying that it's from here and whether or not you've modified it; this is not a legal requirement I'm foisting on you (gyatt is public domain), but rather something where if you do it, whoever edits the script later when it's mysteriously failing and who is cursing your name wondering what the heck that line does, will then thank you.
 
-It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expanded literally no effort towards making it happen, myself.
+It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expended literally no effort towards making it happen, myself.
 
 ## installation
 
 Get gyatt by either doing a git clone of it or downloading it from https://github.com/wyattscarpenter/gyatt/archive/refs/heads/master.zip
+
+You will probably want to keep the entire gyatt folder together in one place, instead of taking the gyatt.gitconfig file away from the other files and putting it somewhere else, but on the other hand you might have some highly sophisticated thing you'd like to do with it, in which case go ahead.
 
 Once you have gyatt on your system, in whatever location you want it to live, you can run `git config --global include.path /path/to/folder/gyatt.gitconfig` to enable it globally, where /path/to/folder/gyatt.gitconfig should probably be the absolute, fully-qualified path of the gyatt.gitconfig (because otherwise it will be considered as a relative path relative to the global .gitconfig file that includes the line, which is probably wrong). You should also add the gyatt folder to PATH.
 
