@@ -8,7 +8,25 @@ Gyatt is my suite of git aliases and configurations. I have quite a few.
 
 Git + Wyatt (my name)
 
+## other linguistic properties
+
+The terms "git" and "gyatt" may be written either with an initial capitalized letter or with an initial lowercase letter, at the discretion of the writer in every instance. Both are correct. As far as this project is concerned. You may also completely capitalize both terms (or either), but this would be something of a fanciful affectation.
+
 ## status of project
+
+In my personal opinion, Gyatt is production-ready and everyone who uses git should use it.
+
+I have never lost data due to a bug in gyatt. (This should not be taken to be an implied warranty, as gyatt is supplied with absolutely no warranty etc etc and so forth.) Of course, this does not preclude the possibility of losing data by using gyatt commands wrong, as some of them are inherently "dangerous"...
+
+There are some features that don't work in Gyatt, and some features that I still hope to implement, but what software project doesn't have some of those?
+
+I will continue to make fearless, backwards-incompatible changes to Gyatt during its development and maintenance. If this actually creates a problem for someone, let me know; I'll usually be happy to keep a depricated alias in indefinitely unless it ruins something else. Gyatt is currently versioned only implicitly, by git commit hash of the Gyatt repo. If you're interested in adopting Gyatt, and it would help you if I adopted a semver system, or more of a formal changelog, let me know, and we can work something out. These are things that I can do, and theoretically could be valuable to someone, but I'm not going to preemptively do so long as I have zero external users.
+
+By the way, Gyatt has no tests. It's been working out pretty well so far. Especially because Gyatt is so simple, for a software project. A wise man, or possibly an idiot, once said to me that all software projects are tested; it's just that sometimes the software is tested by the end users. Currently, I am the end user, and I have a pretty good idea of what in Gyatt works, based on my normal git working habits.
+
+It seems to me like it would be highly inadvisable to use gyatt commands in a shell script. Due to the additional complications of installing gyatt on top of git as a prerequisite. If you like some Gyatt command, you can just include the right-hand side of the alias in your script. Include a comment by it saying that it's from here and whether or not you've modified it; this is not a legal requirement I'm foisting on you (gyatt is public domain), but rather something where if you do it, whoever edits the script later when it's mysteriously failing and who is cursing your name wondering what the heck that line does, will then thank you.
+
+It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expanded literally no effort towards making it happen, myself.
 
 ## installation
 
@@ -40,11 +58,13 @@ You should also add the gyatt folder to your PATH on your operating system, so t
 
 ### software you must have installed in order to use gyatt
 
-Gyatt depends on git
+Gyatt depends on git, of course. Git, in turn, seems to depend on having a roughly Unix-like operating system.
 
-Git depends on sh/bash for a lot of things. This is bad. However, parts of gyatt also depend on sh/bash. They could pretty easily be rewritten to not so depend — I mean this in merely the cosmic sense. They're just little programs so it would be easy to rewrite them; however it would be a chunk of effort perhaps best spent elsewhere. If git the project is going to keep relying on sh/bash (not to mention perl!) for so many things, thus necessitating any git installation (like git-for-windows, for example)also lugs those around with it, then there's no point in rewriting gyatt to not need them. In some halcyon future where git is freed of that dependency— which, to be clear, they aren't even working towards, as far as I can tell (which, in the cosmic sense, is fine)— maybe I'd rewrite the components of gyatt that also so depend.
+Git depends on sh/bash for a lot of things. This is bad. However, parts of gyatt also depend on sh/bash. They could pretty easily be rewritten to not so depend — I mean this in merely the cosmic sense. They're just little programs so it would be easy to rewrite them; however it would be a chunk of effort perhaps best spent elsewhere. If git the project is going to keep relying on sh/bash (not to mention perl!) for so many things, thus necessitating any git installation (like git-for-windows, for example) also lugs those around with it, then there's no point in rewriting gyatt to not need them. In some halcyon future where git is freed of that dependency— which, to be clear, they aren't even working towards, as far as I can tell (which, in the cosmic sense, is fine)— maybe I'd rewrite the components of gyatt that also so depend.
 
-Gyatt's du uses a feature that is a GNU extension of du, as far as I can tell (comma-delimitation based on locale).
+Sometimes I've gone to the trouble of figuring out whether a given script will run in sh or if it needs bash, but sometimes I haven't.
+
+Gyatt's du uses a feature that is a GNU extension of du, as far as I can tell (comma-delimitation based on locale). So far, this has never been a problem.
 
 ## warnings
 
