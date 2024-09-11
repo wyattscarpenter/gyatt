@@ -62,6 +62,7 @@
 	s = status
 	sa = stash list
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
+	sl = stash list # unfortunately, not the popular "steam locomotive" binary #might get rid of this later
 	ss = s -s
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
 	st = s
