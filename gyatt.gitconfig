@@ -60,6 +60,7 @@
 	replace-all-in-history = ! git-replace-all-in-history #todo: can this be inlined here?
 	root = rev-parse --show-toplevel
 	s = status
+	sa = stash list
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
 	ss = s -s
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
