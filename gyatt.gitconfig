@@ -3,7 +3,7 @@
 # This file is alphabetized for quick reference (normal gitconfig files are not alphabetized — they are simply in whatever chronological order the options were set from the command line — but this one was written by hand, so I did alphabetize it). First by section, then within each section by each option. This means you will probably want to skip past the [alias] section at first to check out the options at the bottom, which are likely to be more important to you.
 # See also: https://git-scm.com/docs/git-config#_configuration_file
 [alias]
-	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin.
+	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin. #Upon hearing about this command, Alex Chang remarked "abandoning my gyatt for the gittler".
 	amend = commit --amend --no-edit # Note that this does not amend with unstaged changes, which is what I want half the time, but half the time is not what I want.
 	amendall = commit -a --amend --no-edit # This also amends using the unstaged changes, which is what I want half the time, but half the time is not what I want.
 	amendallall = ! git add -A ; git commit -a --amend --no-edit # This also amends using untracked files, which are now tracked. This is rarely wanted, but sometimes convenient.
