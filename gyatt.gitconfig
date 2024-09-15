@@ -73,6 +73,7 @@
 	todo = grep --line-number -i \\\\bto""do\\\\b # I don't really understand why you need to quadruple backslash here, instead of 1 or 2, but ok. The "" in the middle is just so that it doesn't pick up itself, which I do where I can (not on the left side, for example; it's impossible there).
 	touch = ! touch "$@" && git add "$@"
 	touchx = ! touch "$@" && git add --chmod=+x "$@"
+	# TODO: I would like a "git undo" command that undoes the last git command (not to be confused with Git Extra's "git undo", which just removes the latest (n) commits, sadly) with full generality. Unfortunately this would be very hard to make. The closest thing would be moving to back in the reflog, which is better than nothing but a poor substitute. So, I probably will never achieve git undo. Ah, well.
 	w = whoami
 	whoami = ! git config --get user.name && git config --get user.email
 [commit]
