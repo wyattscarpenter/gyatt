@@ -18,9 +18,10 @@
 	check = ! git diff --staged --check && git diff --check && git diff --check $(git hash-object -t tree /dev/null) # Like git diff --check but for everything (although note that it will only report further errors once you've dealt with what's staged, then what's changed, then finally it will report on everything that's tracked). # Thanks be to http://peter.eisentraut.org/blog/2014/11/04/checking-whitespace-with-git #TODO /  Pet peeve unlocked: git will complain at you if you commit a file that has no new line at the end of the file; but it will not warn about this in git diff --check
 	cherrypick = cherry-pick
 	chmend = ! git chmod "$@" && git amend && : # The null command at the end is needed so that amend doesn't get passed the wrong arguments.
-	# As far as I can tell, no need for chmendall, because the point of git chmod is that the file mode change will then be staged... 
+	# As far as I can tell, no need for chmendall, because the point of git chmod is that the file mode change will then be staged...
 	chmod = ! git-chmod
 	chomd = chmod
+	choose = add --patch # see also: git add --interactive # joke comment: invokes the axiom of choice.
 	clear = git move @
 	conforg = config --show-origin
 	c-p = cherry-pick # The hyphen exists to differentiate this command from git cp as short for copy (which can be found in Git Extras, for example) — although I almost never copy anything in git because between git ln and structuring projects well, you hardly need to. But it is good for, say, copying template files before you fill them out.
@@ -46,7 +47,7 @@
 	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit. # TODO: ideally this should also be able to handle `git move from to`... also should abort if there are any unsaved changes, unless you --force. But this means I'll have to write my own shell script...
 	move-br = move-branch
 	move-branch = move
-	nocheckin = ! git-nocheckin # this sets up the nocheckin *system*. as opposed to git nocheckins, which checks for *tokens* of nocheckin
+	nocheckin = ! git-nocheckin # this sets up the nocheckin *system*. as opposed to git nocheckins, which checks for *tokens* of nocheckin. Unfortunately this is the opposite of git-todo. Oh well.
 	nocheckins = grep --cached --line-number -i \\\\bno""checkin\\\\b # Checks for the existence of the forbidden string # I don't really understand why you need to quadruple backslash here, instead of 1 or 2, but ok. The "" in the middle is just so that it doesn't pick up itself, which I do where I can (not on the left side, for example; it's impossible there).  # --cached is the old way of writing --staged, and we have to use it here, at least in my version of git. # Note that if git commit -am is called (and nocheckins is called in the pre-commit), the changes will be staged temporarily, then this command will run; so it does work correctly for pre-commit purposes. # "Of course, the pre-commit flash flash step paid ability window lil yatchy laptop!"
 	netloc = ! git-netloc
 	obv = ! git-obv # Honestly I don't know why we can't just put this script in this line directly. But it gives us "fatal: bad config line", at least in git version 2.45.2.windows.1
