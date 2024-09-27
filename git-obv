@@ -1,5 +1,4 @@
 #!/bin/sh
-# TODO: I'm still getting the "index.lock exists" error sometimes. Maybe I just need to upgrade git...?
 git -c color.ui=always status --short --untracked-files=no | tr '\n' ' ' >tmp-git-obv-file.txt
 git -c color.ui=always diff HEAD --minimal --word-diff -U0 | grep -E '{+.*+}|\[-.*-\]' >>tmp-git-obv-file.txt
 cat tmp-git-obv-file.txt | git commit -a -F - "$@" # you should be able to, importantly, pass --dry-run to git obv this way. Although unfortunately this will not display the proposed commit message, hmmm...
