@@ -1,4 +1,6 @@
 #!/bin/sh
 git -c color.ui=always status --short --untracked-files=no | tr '\n' ' ' >tmp-git-obv-file.txt
+echo >>tmp-git-obv-file.txt
 git -c color.ui=always diff HEAD --minimal --word-diff -U0 | grep -E '{+.*+}|\[-.*-\]' >>tmp-git-obv-file.txt
-cat tmp-git-obv-file.txt | git commit -a -F - "$@" # you should be able to, importantly, pass --dry-run to git obv this way. Although unfortunately this will not display the proposed commit message, hmmm...
+git commit -a --file tmp-git-obv-file.txt "$@" # you should be able to, importantly, pass -e to git obv this way, so you can edit/preview the commit message that way.
+rm tmp-git-obv-file.txt
