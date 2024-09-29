@@ -1,4 +1,5 @@
 #!/bin/sh
 #this will also git add the non-link file; if you don't want this, don't use this git-ln script!
-ln -s "$@" #TODO: git ln -s is making a copy in git-for-windows?
+export MSYS=winsymlinks:nativestrict # Fixes a problem where otherwise git ln -s is makes a copy in git-for-windows. See https://stackoverflow.com/a/40914277 . This might make something fail if you don't have symlinks turned on in windows?
+ln -s "$@"
 git add "$@"
