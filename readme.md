@@ -38,13 +38,17 @@ Ah... while investigating [another crippling insufficiency of git](https://stack
 
 ## installation
 
-Get gyatt by either doing a git clone of it or downloading it from https://github.com/wyattscarpenter/gyatt/archive/refs/heads/master.zip
+Get gyatt by either doing a git clone of it or downloading (and then extracting) it from https://github.com/wyattscarpenter/gyatt/archive/refs/heads/master.zip
 
 You will probably want to keep the entire gyatt folder together in one place, instead of taking the gyatt.gitconfig file away from the other files and putting it somewhere else, but on the other hand you might have some highly sophisticated thing you'd like to do with it, in which case go ahead.
 
-Once you have gyatt on your system, in whatever location you want it to live, you can run `git config --global include.path /path/to/folder/gyatt.gitconfig` to enable it globally, where /path/to/folder/gyatt.gitconfig should probably be the absolute, fully-qualified path of the gyatt.gitconfig (because otherwise it will be considered as a relative path relative to the global .gitconfig file that includes the line, which is probably wrong). You should also add the gyatt folder to PATH.
+Once you have gyatt on your system, in whatever location you want it to live, you can run `. ./install_pwd_to_git.sh` in this folder, which basically does the following with the current working directory (the value of `$PWD`):
 
-For example, my commands were `git config --global include.path C:\Users\wyatt\files\gits\wyattscarpenter\gyatt\gyatt.gitconfig` and (on WSL) `git config --global include.path /mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt/gyatt.gitconfig`. On regular linux it's probably something like `git config --global include.path /home/you/bin/gyatt` or something. (I also don't remember if git config does tilde-expansion.)
+* `git config --global include.path /path/to/folder/gyatt.gitconfig` to enable it globally, where /path/to/folder/gyatt.gitconfig should probably be the absolute, fully-qualified path of the gyatt.gitconfig (because otherwise it will be considered as a relative path relative to the global .gitconfig file that includes the line, which is probably wrong). You should also add the gyatt folder to PATH.
+
+  * For example, my commands were `git config --global include.path C:\Users\wyatt\files\gits\wyattscarpenter\gyatt\gyatt.gitconfig` and (on WSL) `git config --global include.path /mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt/gyatt.gitconfig`. On regular linux it's probably something like `git config --global include.path /home/you/bin/gyatt` or something. (I also don't remember if git config does tilde-expansion.)
+
+* if you **run** the `install_pwd_to_git.sh` script like `./install_pwd_to_git.sh` instead of **source**ing it like `. ./install_pwd_to_git.sh`, then you may have to start a new session for this to take effect.
 
 You can then test if gyatt is successfully included by running `git s`, which will then print out the message of git status.
 
