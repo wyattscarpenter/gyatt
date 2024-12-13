@@ -16,7 +16,7 @@ The terms "git" and "gyatt" may be written either with an initial capitalized le
 
 In my personal opinion, Gyatt is production-ready and everyone who uses git should use it.
 
-I have never lost data due to a bug in gyatt. (This should not be taken to be an implied warranty, as gyatt is supplied with absolutely no warranty etc etc and so forth.) Of course, this does not preclude the possibility of losing data by using gyatt commands wrong, as some of them are inherently "dangerous"...
+I have never lost data due to a bug in gyatt. (This should not be taken to be an implied warranty, as gyatt is supplied with absolutely no warranty etc etc and so forth.) Of course, this does not preclude the possibility of losing data by using gyatt commands wrong, as some of them are inherently "dangerous" due to the underlying git commands introducing the ability to lose work...
 
 There are some features that don't work in Gyatt, and some features that I still hope to implement, but what software project doesn't have some of those?
 
@@ -25,6 +25,8 @@ I will continue to make fearless, backwards-incompatible changes to Gyatt during
 By the way, Gyatt has no tests. It's been working out pretty well so far. Especially because Gyatt is so simple, for a software project. A wise man, or possibly an idiot, once said to me that all software projects are tested; it's just that sometimes the software is tested by the end users. Currently, I am the end user, and I have a pretty good idea of what in Gyatt works, based on my normal git working habits.
 
 It seems to me like it would be highly inadvisable to use gyatt commands in a shell script. Due to the additional complications of installing gyatt on top of git as a prerequisite. If you like some Gyatt command, you can just include the right-hand side of the alias in your script. Include a comment by it saying that it's from here and whether or not you've modified it; this is not a legal requirement I'm foisting on you (gyatt is public domain), but rather something where if you do it, whoever edits the script later when it's mysteriously failing and who is cursing your name wondering what the heck that line does, will then thank you.
+
+(I have often considered making `gyatt` an alias for `git` so that you could explicitly mark gyatt commands differently in scripts. However, since there would be no way (in the current scheme) (as far as I can see) to enforce that gyatt is used with gyatt and git with git, this didn't seem worth it to me.)
 
 It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expended literally no effort towards making it happen, myself.
 
