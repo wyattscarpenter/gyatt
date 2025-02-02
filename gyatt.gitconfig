@@ -44,6 +44,7 @@
 	ll = log -5
 	ln = ! git-ln
 	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
+	make-github-repo = ! git-make-github-repo
 	mb = move-branch
 	move = reset --hard # The idea here is that you move the head (and current branch tip ref, naturally) to the specified commit. # TODO: ideally this should also be able to handle `git move from to`... also should abort if there are any unsaved changes, unless you --force. But this means I'll have to write my own shell script...
 	move-br = move-branch
