@@ -25,6 +25,7 @@
 	choose = add --patch # see also: git add --interactive # joke comment: invokes the axiom of choice.
 	clear = git move @ #git extras also has a git clear, which takes priority over this, which is basically this + `git clean` (removes untracked files)
 	conforg = config --show-origin
+	create-github-repo = make-github-repo
 	c-p = cherry-pick # The hyphen exists to differentiate this command from git cp as short for copy (which can be found in Git Extras, for example) — although I almost never copy anything in git because between git ln and structuring projects well, you hardly need to. But it is good for, say, copying template files before you fill them out.
 	d = ! header STAGED && git diff --word-diff=color --staged && header WORKING && git diff --word-diff=color #have to diff both the index and the working tree (both the stage and the file system (the part that git tracks, at least))
 	du = ! printf \"%s (%s) $(git root)\\n\" `du --summarize --human-readable \"$(git root)\" | cut -f 1` `LC_NUMERIC=en_US.UTF-8 du --summarize --block-size=\"'KiB\" \"$(git root)\" | cut -f 1`
