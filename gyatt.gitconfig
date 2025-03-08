@@ -38,6 +38,7 @@
 	find-and-replace = !git grep -I --name-only "$1" | xargs sed -i "s/$1/$2/g"
 	forsake = abandon
 	g = ! git log --all --graph --pretty=format:'%C(bold blue)%as %Cgreen%ad%Creset %C(auto)%h%d %s %C(bold black)<%aN>%Creset' --date=format-local:'%H:%M (%a)' #format inspired by https://gist.github.com/niun/ca61a37791ff1fdc9b33 # The ! git part is necessary, or else this does not work on Windows (replacing with double quotes will not cure the problem either). # I later decided to add a unix call as well for the net loc
+	gacm = ! git add --all && git commit --all --message # This is my friend Gio's "Gack 'um" command. (note that arguments to gacm will be passed to git commit, starting at after --message, due to how git aliases work)
 	gg = g -20 # Although the number 20 is fundamentally arbitrary here, and is chosen mostly just to comfortably fit in a default cmd window; and g is arbitrary and I just wanted to type it twice for fast typing; I like to amuse myself by pretending there is some great and noble correspondence between g, giga-, billion, twice million, and 20. Although my case is weakened by the fact that a mebi is 2^20, which is an even twentier number.
 	ggg = g -40
 	git = ! git # handles the ever-so-important `git git` case. Might fail (or do something unexpected) if you have git renamed to something else, I guess.
