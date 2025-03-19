@@ -47,6 +47,7 @@ You will probably want to keep the entire gyatt folder together in one place, in
 Once you have gyatt on your system, in whatever location you want it to live, you can run `. ./install_pwd_to_git.sh` in this folder, which basically does the following with the current working directory (the value of `$PWD`):
 
 * `git config --global include.path /path/to/folder/gyatt.gitconfig` to enable it globally, where /path/to/folder/gyatt.gitconfig should probably be the absolute, fully-qualified path of the gyatt.gitconfig (because otherwise it will be considered as a relative path relative to the global .gitconfig file that includes the line, which is probably wrong). You should also add the gyatt folder to PATH.
+  * This is also what gyatt-bless does. If the relevant folder is already in your PATH, you can just run the gyatt-bless command.
 
   * For example, my commands were `git config --global include.path C:\Users\wyatt\files\gits\wyattscarpenter\gyatt\gyatt.gitconfig` and (on WSL) `git config --global include.path /mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt/gyatt.gitconfig`. On regular linux it's probably something like `git config --global include.path /home/you/bin/gyatt` or something. (I also don't remember if git config does tilde-expansion.)
 

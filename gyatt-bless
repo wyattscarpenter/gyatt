@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dir_name="`dirname "$0"`"
+echo "Adding $dir_name..."
+git config --global include.path "$dir_name"/*.gitconfig
