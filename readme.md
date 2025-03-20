@@ -132,3 +132,7 @@ If you want to contribute to this project, first of all: thanks! Second of all, 
 ## coda
 
 And remember the ancient wisdom: “a voluptuous charmer takes food; a scoundrel is cursed to dwell restlessly in strange places”.
+
+## coda 2
+
+Lil Gyatty laptop.
