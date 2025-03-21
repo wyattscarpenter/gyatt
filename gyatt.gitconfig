@@ -44,6 +44,7 @@
 	ggg = g -40
 	git = ! git # handles the ever-so-important `git git` case. Might fail (or do something unexpected) if you have git renamed to something else, I guess.
 	l = log
+	list-all-notes = ! git notes | cut -d' ' -f2 | xargs -ihash git log hash -1 # Yet another crucial piece of functionality git does not provide. Thanks for the workaround, BetaRide! https://stackoverflow.com/questions/20324417/git-get-all-notes-of-a-branch
 	ll = log -5
 	ln = ! git-ln
 	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
