@@ -1,13 +1,13 @@
 #!/bin/bash
 set -euo pipefail #bash strict mode
-[ "$#" -lt 2 ] && echo USAGE: "$0 remote_to_merge_as_folder branch_name_in_remote" && echo && echo "IMPLEMENTATION:" && cat "$0" && echo && exit 22 #usage message for invalid number of arguments
+( [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ) && echo USAGE: "$0 remote_to_merge_as_subfolder branch_name_in_remote [name_for_subfolder]" && echo && echo "IMPLEMENTATION:" && cat "$0" && echo && exit 22 #usage message for invalid number of arguments
 
 
-# This code is largely copied from https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging.html#_subtree_merge
+# This code is inspired and instructed by https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging.html#_subtree_merge
 
-b="`basename $1`"
+b="${3:-`basename $1`}"
 
 git remote add "$b" "$1"
-git fetch "$b" # do we actually need this step? hmm
+git fetch "$b"
 git merge -Xsubtree="$b" "$b"/"$2" --allow-unrelated-histories
 git remote remove "$b"
