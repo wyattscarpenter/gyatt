@@ -1,29 +1,31 @@
 #!/bin/bash
 
 if [ "$#" -lt 2 ]; then
-  echo "Usage: $0 regex_target regex_replacement additional_flags_to_git_ls-files..." >&2
+  echo "Usage: $0 string_target string_replacement additional_flags_to_git_ls-files..." >&2
   exit 1
 fi
-regex_target="$1"
-regex_replacement="$2"
+string_target="$1"
+string_replacement="$2"
 shift 2
 
 # For instance, a useful $3 is *.py *.md (I input that on cmd so I don't know the quoting story for it on bash; I assume you have to single-quote.)
 
-export FILTER_BRANCH_SQUELCH_WARNING=1
-
-tf="git ls-files -z ""$@"" | python -c \"# Takes null-terminated file names from stdin and replaces all instances of argv[1] with argv[2] in said files
+# This python script takes null-terminated file names from stdin and replaces all instances of argv[1] with argv[2] in said files. (I wrote this script because sed let me down too many times.) It's deliberately designed to be ultaparanoid and verbose about what it's doing, because rewriting history scared me. (Later someone could refactor it to just be silent or whatever.)"
+tf="git ls-files -z ""$@"" | python -c \"
 import sys
 s,r=sys.argv[1:3]
-for f in sys.stdin.read(encoding='utf8').split('\0')[:-1]:
-  with open(f,'r') as file:
+for f in sys.stdin.read().split('\0')[:-1]:
+  with open(f,'r', encoding='utf8') as file:
     content=file.read()
   new_content=content.replace(s,r)
-  if content!=new_content:
-    for i, line, new_line in enumerate(zip(content.splitlines(), new_content.splitlines()),1):
+  with open(f,'w', encoding='utf8') as file:
+    file.write(new_content)
+  with open(f,'r', encoding='utf8') as file: # For purposes of paranoia, we check this extremely thoroughly.
+    content2=file.read()
+  if content!=content2:
+    for (i, (line, new_line)) in enumerate(zip(content.splitlines(), content2.splitlines()),1):
       if line != new_line:
-        sys.stderr.write(f'Updated {f} on line {i}: {line} ⇒ {new_line} \n')
-  with open(f,'r') as file:
-    file.write(new_content)\" \"$regex_target\" \"$regex_replacement\""
+        sys.stderr.write(f'Updated {f} on line {i}: {line} ⇒ {new_line}\n')\" \"$string_target\" \"$string_replacement\""
 
-git filter-branch --tree-filter "$tf" --prune-empty #note that this is quite possibly operating system dependent and thus not foolproof for redacting files in all cases. sed i regex flag (here after g) is a GNU extension, for example. #Note also that the weird double quoting is required.
+export FILTER_BRANCH_SQUELCH_WARNING=1
+git filter-branch --tree-filter "$tf" --prune-empty
