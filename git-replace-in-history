@@ -12,8 +12,14 @@ shift 2
 
 export FILTER_BRANCH_SQUELCH_WARNING=1
 
-#TODO: no iteration of this so far actually works 🤔
-
-tf="git ls-files -z ""$@"" | xargs -0 sed -i \"s/$regex_target/$regex_replacement/gi\""
+tf="git ls-files -z ""$@"" | python -c \"# Takes null-terminated file names from stdin and replaces all instances of argv[1] with argv[2] in said files
+import sys
+s,r=sys.argv[1:3]
+for f in sys.stdin.read(encoding='utf8').split('\0')[:-1]:
+ with open(f,'r+') as file:
+  content=file.read()
+  file.seek(0)
+  file.write(content.replace(s,r))
+  file.truncate()\" \"$regex_target\" \"$regex_replacement\""
 
 git filter-branch --tree-filter "$tf" --prune-empty #note that this is quite possibly operating system dependent and thus not foolproof for redacting files in all cases. sed i regex flag (here after g) is a GNU extension, for example. #Note also that the weird double quoting is required.
