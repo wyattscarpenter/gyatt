@@ -1,6 +1,19 @@
-if [ "$#" -ne 2 ]; then
-  echo "Usage: $0 regex_target regex_replacement" >&2
+#!/bin/bash
+
+if [ "$#" -lt 2 ]; then
+  echo "Usage: $0 regex_target regex_replacement additional_flags_to_git_ls-files..." >&2
   exit 1
 fi
+regex_target="$1"
+regex_replacement="$2"
+shift 2
 
-git filter-branch --tree-filter "git ls-files -z | xargs -0 sed -i \"s/$1/$2/gi\"" --prune-empty #note that this is quite possibly operating system dependent and thus not foolproof for redacting files in all cases. sed i regex flag (here after g) is a GNU extension, for example. #Note also that the weird double quoting is required.
+# For instance, a useful $3 is *.py *.md (I input that on cmd so I don't know the quoting story for it on bash; I assume you have to single-quote.)
+
+export FILTER_BRANCH_SQUELCH_WARNING=1
+
+#TODO: no iteration of this so far actually works 🤔
+
+tf="git ls-files -z ""$@"" | xargs -0 sed -i \"s/$regex_target/$regex_replacement/gi\""
+
+git filter-branch --tree-filter "$tf" --prune-empty #note that this is quite possibly operating system dependent and thus not foolproof for redacting files in all cases. sed i regex flag (here after g) is a GNU extension, for example. #Note also that the weird double quoting is required.
