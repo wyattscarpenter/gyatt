@@ -16,10 +16,14 @@ tf="git ls-files -z ""$@"" | python -c \"# Takes null-terminated file names from
 import sys
 s,r=sys.argv[1:3]
 for f in sys.stdin.read(encoding='utf8').split('\0')[:-1]:
- with open(f,'r+') as file:
-  content=file.read()
-  file.seek(0)
-  file.write(content.replace(s,r))
-  file.truncate()\" \"$regex_target\" \"$regex_replacement\""
+  with open(f,'r') as file:
+    content=file.read()
+  new_content=content.replace(s,r)
+  if content!=new_content:
+    for i, line, new_line in enumerate(zip(content.splitlines(), new_content.splitlines()),1):
+      if line != new_line:
+        sys.stderr.write(f'Updated {f} on line {i}: {line} ⇒ {new_line} \n')
+  with open(f,'r') as file:
+    file.write(new_content)\" \"$regex_target\" \"$regex_replacement\""
 
 git filter-branch --tree-filter "$tf" --prune-empty #note that this is quite possibly operating system dependent and thus not foolproof for redacting files in all cases. sed i regex flag (here after g) is a GNU extension, for example. #Note also that the weird double quoting is required.
