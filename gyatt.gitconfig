@@ -3,7 +3,7 @@
 # This file is alphabetized for quick reference (normal gitconfig files are not alphabetized — they are simply in whatever chronological order the options were set from the command line — but this one was written by hand, so I did alphabetize it). First by section, then within each section by each option. This means you will probably want to skip past the [alias] section at first to check out the options at the bottom, which are likely to be more important to you.
 # See also: https://git-scm.com/docs/git-config#_configuration_file
 [alias]
-	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin. #Upon hearing about this command, Alex Chang remarked "abandoning my gyatt for the gittler".
+	abandon = reset --hard @{upstream} # Abandon the local copy and switch to origin. # Upon hearing about this command, Alex Chang remarked "abandoning my gyatt for the gittler".
 	addx = git add --chmod=+x
 	amend = commit --amend --no-edit # Note that this does not amend with unstaged changes, which is what I want half the time, but half the time is not what I want.
 	amendall = commit -a --amend --no-edit # This also amends using the unstaged changes, which is what I want half the time, but half the time is not what I want.
@@ -61,15 +61,16 @@
 	onto = onto-interactive
 	onto-interactive = ! echo 'OK, this isnt actually interactive, but the way you compose a git rebase --onto command is git rebase [from, but not including this commit] [to, including this commit (typically best if this is a branch name, so that this branch tip moves)] --onto [on to this commit (the branch you want to progress, whatever)]. Remember that this will crush merge structure unless you include --rebase-merges!'
 	patch = add --patch
+	pick = ! echo \"Gyatt adds the git alias git-choose, which I often misremember as git-pick. However, I have not added the alias git-pick because that's very close to git-pickaxe, an unrelated git command that appears to be an alias to git blame — or possibly git log, if we defer to the authority of internet search results instead of my local command line. So, you should use git choose or git pickaxe, depending on which of those you meant.\" >&2 && false
 	po = push --set-upstream origin HEAD
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
 	r = remote -v
 	reb = rebase
 	rebcont = ! git diff --check && git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
-	rebforsake = ! git checkout --theirs . && git rebcont # This command is for when there's a conflict in the middle of a rebase and you want to just let the other changes (say, from upstream) win instead of manually reconciling them. #todo: also make mergecont and mergeforsake?
-	remove-from-history = ! git-remove-from-history #todo: can this be inlined here?
-	replace-all-in-history = ! git-replace-all-in-history #todo: can this be inlined here?
+	rebforsake = ! git checkout --theirs . && git rebcont # This command is for when there's a conflict in the middle of a rebase and you want to just let the other changes (say, from upstream) win instead of manually reconciling them. #todo: also make mergecont and mergeforsake? # todo: I'm not sure this is a good name for it.
+	remove-file-from-history = ! git-remove-file-from-history
+	replace-in-history = ! git-replace-in-history
 	root = rev-parse --show-toplevel
 	s = status
 	sa = stash list
