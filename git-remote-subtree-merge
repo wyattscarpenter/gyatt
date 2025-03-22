@@ -2,7 +2,7 @@
 set -euo pipefail #bash strict mode
 if ( [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ) ; then
   if [ "$#" -eq 1 ] ; then
-    cd "$1"
+    cd "$1" || ( echo "Not enough arguments and given argument is not a local folder than can be cd'd to." && exit 22)
     echo 'Branches on the remote, to choose from (for the required second parameter):'
     git branch --verbose
     exit 22 #usage message for invalid number of arguments
@@ -11,12 +11,6 @@ if ( [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ) ; then
   fi
 fi
 
-# This code is inspired and instructed by https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging.html#_subtree_merge
-
 b="${3:-`basename $1`}"
 
-git remote add "$b" "$1"
-git fetch "$b"
-git read-tree --prefix="$b"/ -u "$b"/"$2"
-git merge -Xsubtree="$b" "$b"/"$2" --allow-unrelated-histories
-git remote remove "$b"
+git subtree add --prefix="$b" "$1" "$2"
