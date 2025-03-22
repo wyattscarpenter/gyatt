@@ -62,7 +62,7 @@
 	onto = onto-interactive
 	onto-interactive = ! echo 'OK, this isnt actually interactive, but the way you compose a git rebase --onto command is git rebase [from, but not including this commit] [to, including this commit (typically best if this is a branch name, so that this branch tip moves)] --onto [on to this commit (the branch you want to progress, whatever)]. Remember that this will crush merge structure unless you include --rebase-merges!'
 	patch = add --patch
-	pick = ! echo \"Gyatt adds the git alias git-choose, which I often misremember as git-pick. However, I have not added the alias git-pick because that's very close to git-pickaxe, an unrelated git command that appears to be an alias to git blame — or possibly git log, if we defer to the authority of internet search results instead of my local command line. So, you should use git choose or git pickaxe, depending on which of those you meant.\" >&2 && false
+	pick = choose
 	po = push --set-upstream origin HEAD
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
