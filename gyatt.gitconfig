@@ -98,7 +98,7 @@
 [credential]
 	useHttpPath = true
 [diff]
-	algorithm = histogram
+	algorithm = histogram #seems changing doesn't do anything, weird. Or maybe I just haven't noticed yet.
 	wsErrorHighlight = all
 [gc]
 	auto = 0 # Disables automatic garbage collection. See Gyatt readme for more on why this is a good idea.
