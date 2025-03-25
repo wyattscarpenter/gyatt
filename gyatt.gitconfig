@@ -23,7 +23,7 @@
 	# As far as I can tell, no need for chmendall, because the point of git chmod is that the file mode change will then be staged...
 	chmod = ! git-chmod
 	chomd = chmod
-	choose = add --patch # see also: git add --interactive # joke comment: invokes the axiom of choice.
+	choose = patch # joke comment: invokes the axiom of choice.
 	clear = git move @ #git extras also has a git clear, which takes priority over this, which is basically this + `git clean` (removes untracked files)
 	conforg = config --show-origin
 	create-github-repo = make-github-repo
@@ -62,8 +62,9 @@
 	ok = ! git status --short && git stash list && git to""do && git no""checkins && git check #TODO: check if up-to-date with upstream? also check if all tags pushed to upstream? Also all git notes pushed to upstream? And all submodules are up to date?? And all subtrees (I guess you don't have to do anything special for git subtree, so maybe that's "for free")?? #this command checks if a repo is "ok", and lists any ways in which it is not "ok". “This world is imperfect; if only I could wipe away the impurities, and make it as beautiful as ME.” —https://www.youtube.com/watch?v=DN9DW4rrEjY #TODO: to be truly perfect, and finalized I think a git repo should have only one (non-archived? is that a concept in git?) branch; all other branches should be deleted or merged into master by the end of history. But I don't check that right now.
 	onto = onto-interactive
 	onto-interactive = ! echo 'OK, this isnt actually interactive, but the way you compose a git rebase --onto command is git rebase [from, but not including this commit] [to, including this commit (typically best if this is a branch name, so that this branch tip moves)] --onto [on to this commit (the branch you want to progress, whatever)]. Remember that this will crush merge structure unless you include --rebase-merges!'
-	patch = add --patch
-	pick = choose
+	p = patch # Aliasing git p to patch when everyone loves doing git pull and git push may be a controversial move, and by controversial I mean genius. # See also, git_alias_p_meme.jpg
+	patch = add --patch # see also: git add --interactive
+	pick = patch
 	po = push --set-upstream origin HEAD
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
