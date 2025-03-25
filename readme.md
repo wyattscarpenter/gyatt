@@ -32,20 +32,6 @@ Another good idea, along the same lines but in reverse, would be to make all gya
 
 It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expended literally no effort towards making it happen, myself.
 
-## how to examine gyatt commands
-
-`git help foo` will show you the documentation for foo, including the full text of foo if foo is an alias, which most gyatt commands are. Gyatt also provides `git text`, which is much like `git help`, except it will also show the origin file of the alias (which is useful if you have many gitconfig files active).
-
-If a gyatt command is not an alias, just look in its script I guess.
-
-## other software somewhat like gyatt
-
-I've recently discovered Git Extras ( (dis)claimer: and contributed a couple improvements to it ), which is a similar project to gyatt. For example, both gyatt and Git Extras have a `git touch` command, because great minds think alike https://github.com/tj/git-extras/blob/main/Commands.md . However, there are differences: for example, gyatt has `git chmod` and `git whoami`; Git Extras has `git repl` and `git abort`. (But not `git continue`? Odd. I would love to have a `git continue`, that continues the current revert, rebase, merge or cherry-pick, without the need to find exact command in history.) So, they both have independently-useful features. If I were more ambitious I would maybe try to contribute all of Gyatt to Git Extras, thus making it Not My Problem (although, simultaneously acquiring an interest in Git Extras (using it every day) that would make Git Extras a little bit more of My Problem). As it stands, I think they're both pretty good projects (or at least seem to me to be — caveat emptor and all that) and you should install both.
-
-There are probably other projects like that out there as well. The only one that springs to mind is https://en.wikipedia.org/wiki/Cogito_(software), which is obsolete but I know about it because it's named "Cogito" and I have a philsophy degree so that amuses me. That wiki page mentions EasyGit (the git wrapper, https://github.com/smarr/eg ; not the git server for iCloud https://easygit.app/), which I've looked at briefly and also looks kind of good. I'm a fan, in principle, of these git "total conversion mods" (if you will) because I think the default git UX is pretty bad. I've mastered git but, having mastered it, can't necessarily wish anyone else have to master it. However, I've never used any of these total conversion mods so they could be good or bad — who knows.
-
-Ah... while investigating [another crippling insufficiency of git](https://stackoverflow.com/questions/1964470/whats-the-equivalent-of-subversions-use-commit-times-for-git/13284229#13284229), I've come across [git-tools](https://github.com/MestreLion/git-tools), a similar (but small) suite of git addtions, which also has some great goodies in it, including the semi-famous git-restore-mtime (at least, famous in the sense that that's the name by which I'm installing it in the apt package manager... which is famous to me! It's also known as git-mestrelion-tools on debian, apparently). Note that git-restore-mtime is more-or-less equivalent to git-extra's git-utimes (which is presumably named after utimes, a system call which can change file modification times — why exactly it has a u in it is not exactly clear to me. The u doesn't seem to indicate microseconds given that sister system call `utime` only has a resolution of one second; it may indicate "unsigned" or "unix", although neither of these are mandated by the specification... perhaps it means "update"?).
-
 ## installation
 
 Get gyatt by either doing a git clone of it or downloading (and then extracting) it from https://github.com/wyattscarpenter/gyatt/archive/refs/heads/master.zip
@@ -123,9 +109,25 @@ Gyatt *doesn't* do several things that would be useful to me, but probably hosti
 
 - I did not include the options that set up git-lfs, simply because I don't understand it.
 
+## how to examine gyatt commands from the command line
+
+`git help foo` will show you the documentation for foo, including the full text of foo if foo is an alias, which most gyatt commands are. Gyatt also provides `git text`, which is much like `git help`, except it will also show the origin file of the alias (which is useful if you have many gitconfig files active).
+
+If a gyatt command is not an alias, just look in its script I guess.
+
+`git bash echo $SOME_ENV_VAR`, using gyatt's provided `git bash` can also be helpful to investigate the behavior of git (when some git behavior is influenced by environment variables) (if git is, for you, like me, not located in your regular environment).
+
 ## brief and irrelevant history
 
 Gyatt used to be a number of scripts in my util repo, until I realized that I needed to use both git for linux and git for windows, so I had better figure out the git-native solutions for aliasing, etc.
+
+## other software somewhat like gyatt
+
+I've recently discovered Git Extras ( (dis)claimer: and contributed a couple improvements to it ), which is a similar project to gyatt. For example, both gyatt and Git Extras have a `git touch` command, because great minds think alike https://github.com/tj/git-extras/blob/main/Commands.md . However, there are differences: for example, gyatt has `git chmod` and `git whoami`; Git Extras has `git repl` and `git abort`. (But not `git continue`? Odd. I would love to have a `git continue`, that continues the current revert, rebase, merge or cherry-pick, without the need to find exact command in history.) So, they both have independently-useful features. If I were more ambitious I would maybe try to contribute all of Gyatt to Git Extras, thus making it Not My Problem (although, simultaneously acquiring an interest in Git Extras (using it every day) that would make Git Extras a little bit more of My Problem). As it stands, I think they're both pretty good projects (or at least seem to me to be — caveat emptor and all that) and you should install both.
+
+There are probably other projects like that out there as well. The only one that springs to mind is https://en.wikipedia.org/wiki/Cogito_(software), which is obsolete but I know about it because it's named "Cogito" and I have a philsophy degree so that amuses me. That wiki page mentions EasyGit (the git wrapper, https://github.com/smarr/eg ; not the git server for iCloud https://easygit.app/), which I've looked at briefly and also looks kind of good. I'm a fan, in principle, of these git "total conversion mods" (if you will) because I think the default git UX is pretty bad. I've mastered git but, having mastered it, can't necessarily wish anyone else have to master it. However, I've never used any of these total conversion mods so they could be good or bad — who knows.
+
+Ah... while investigating [another crippling insufficiency of git](https://stackoverflow.com/questions/1964470/whats-the-equivalent-of-subversions-use-commit-times-for-git/13284229#13284229), I've come across [git-tools](https://github.com/MestreLion/git-tools), a similar (but small) suite of git addtions, which also has some great goodies in it, including the semi-famous git-restore-mtime (at least, famous in the sense that that's the name by which I'm installing it in the apt package manager... which is famous to me! It's also known as git-mestrelion-tools on debian, apparently). Note that git-restore-mtime is more-or-less equivalent to git-extra's git-utimes (which is presumably named after utimes, a system call which can change file modification times — why exactly it has a u in it is not exactly clear to me. The u doesn't seem to indicate microseconds given that sister system call `utime` only has a resolution of one second; it may indicate "unsigned" or "unix", although neither of these are mandated by the specification... perhaps it means "update"?).
 
 ## mutterings about future projects
 
