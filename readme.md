@@ -81,7 +81,13 @@ Gyatt's du uses a feature that is a GNU extension of du, as far as I can tell (c
 
 ## warnings
 
-Gyatt enables rerere, which is turned off by default. If this ever causes you a problem, please explain it to me — to me, currently, it seems like a crucial git feature that is erroneously turned off for no reason.
+Gyatt enables rerere, which is usually turned off by default in git. If this ever causes you a problem, please explain it to me — to me, currently, rerere seems like a crucial git feature that is erroneously turned off for no reason. Yes, I have read the blog post about its strange behavior that might justify keeping it turned off by default. No, I didn't find it convincing (it doesn't elaborate on its consequences). For more information, you — like me — can see https://gitster.livejournal.com/41795.html and https://stackoverflow.com/questions/5519244/are-there-any-downsides-to-enabling-git-rerere . If anything, it seems like the problem of rerere is that it doesn't rerere *enough*. Another problem is that maybe it rereres *too much*, but I haven't encountered a case like this.
+
+Gyatt sets rebase.rebaseMerges to true, because I always want to "rebase merges" (preserve branch structure in a rebase, by creating merge commits by replaying the appropriate merges) when I rebase. It isn't set to rebase-cousins because I don't really understand what that would do or why I would want it and I've never been dissatisfied with how rebase --rebase-merges seems to treat "cousins", despite being a user of many very wacky branch structures myself. Anyway, you can easily countermand this by passing --no-rebase-merges (or --rebase-merges=rebase-cousins) to rebase. You can also unset this setting for yourself if you do so much merge-crushing on purpose that you find this whole needing-a-flag business inconvenient. Certain gyatt aliases may also use --rebase-merges internally. You may also countermand those if you wish.
+
+Please keep in mind that even with rebase-merges true, and rerere on git is actually still occasionally garbage at replaying merges and keeping your solutions and history correct. I might suggest you avoid rebasing merges when possible, or even use the tool [jj](https://github.com/jj-vcs/jj) instead. You can also see my guide on rebasing and merges (https://wyattscarpenter.github.io/blog/almost_always_rebase.txt , forthcoming) for several hot tips about git history management, although the best one is that if you just want to replay merges exactly you should deal with the merge conflict by checking out the version of the files (possibly: (almost) all files, in which case you can use use eg git checkout 1293809 -- .) from the merge commit you're trying to apply, as that will have the same version of the files from last time. (Of course, usually the point of a rebase is to modify something, so make sure you don't unmodify that by checking out too aggressively — if you do, then, uh, simply check it out again from the previously-applied commit in the rebase!)
+
+TODO(me): consider setting rebase.forkPoint to false? See https://commaok.xyz/post/fork-point/ for more details — although I need to see the opposite case as well to really understand if I want forkpoint true all the time for real for real.
 
 Gyatt sets init.defaultBranch to "master", for compatibility with the majority of the git ecosystem. However, in certain obscure cases this may cause incompatibility with GitHub repos. This is very easy to fix, but even easier if I've told you about it in advance, like I'm doing now. For what it's worth, you can also set the default branch name to "master" in GitHub, and you probably should, for greatest compatibility with the git ecosystem.
 
@@ -139,7 +145,11 @@ This might finally implement something I've been thinking about which is the abi
 
 My readme about this project should complain about git, its usability, its inability to handle large files, link to the handmade hero parody of git ( https://www.youtube.com/watch?v=3a37D4NWRbg ) which suggests I guess maybe using svn, caution against using git, say that I have mastered git but maybe you shouldn't, maybe link to other things written about git, etc. 'Wait, what's a "ref"? What's a "tree-ish"? What, pray tell, is a "working tree", and how is that different from an "index"...?'
 
-(spoiler: "tree" is git for directory (despite the fact that git history is... also a tree (technically, a DAG). After you know this, a lot of git things make a lot more sense. git subtree, for example. (Not that most people have used git subtree. But at least I understand its man page now.))
+(Spoiler: "tree" is git for directory (despite the fact that git history is... also a tree (technically, a DAG). After you know this, a lot of git things make a lot more sense. git subtree, for example. (Not that most people have used git subtree. But at least I understand its man page now.))
+
+One of the weird things about git is that when you're a novice you don't understand what the commands do. And then once you master git you don't understand why the commands are bad at doing the things git is supposed to be for.
+
+I might look into using jj instead some time.
 
 ## contributing
 
