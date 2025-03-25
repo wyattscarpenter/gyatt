@@ -139,7 +139,7 @@ This might finally implement something I've been thinking about which is the abi
 
 My readme about this project should complain about git, its usability, its inability to handle large files, link to the handmade hero parody of git ( https://www.youtube.com/watch?v=3a37D4NWRbg ) which suggests I guess maybe using svn, caution against using git, say that I have mastered git but maybe you shouldn't, maybe link to other things written about git, etc. 'Wait, what's a "ref"? What's a "tree-ish"? What, pray tell, is a "working tree", and how is that different from an "index"...?'
 
-(spoiler: "tree" is git for directory (despite the fact that git history is... also a tree (technically, a DAG). After you know this, a lot of git things make a lot more sense. git subtree, for example. (Not that I've ever used git subtree. But at least I understand its man page now.))
+(spoiler: "tree" is git for directory (despite the fact that git history is... also a tree (technically, a DAG). After you know this, a lot of git things make a lot more sense. git subtree, for example. (Not that most people have used git subtree. But at least I understand its man page now.))
 
 ## contributing
 
