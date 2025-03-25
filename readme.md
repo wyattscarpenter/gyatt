@@ -53,7 +53,9 @@ Once you have gyatt on your system, in whatever location you want it to live, yo
 
   * For example, my commands were `git config --global include.path C:\Users\wyatt\files\gits\wyattscarpenter\gyatt\gyatt.gitconfig` and (on WSL) `git config --global include.path /mnt/c/Users/wyatt/files/gits/wyattscarpenter/gyatt/gyatt.gitconfig`. On regular linux it's probably something like `git config --global include.path /home/you/bin/gyatt` or something. (I also don't remember if git config does tilde-expansion.)
 
-* if you **run** the `install_pwd_to_git.sh` script like `./install_pwd_to_git.sh` instead of **source**ing it like `. ./install_pwd_to_git.sh`, then you may have to start a new session for this to take effect.
+* Adds the working directory to your path, probably.
+
+If you **run** the `install_pwd_to_git.sh` script like `./install_pwd_to_git.sh` instead of **source**ing it like `. ./install_pwd_to_git.sh`, then you may have to start a new session for this to take effect.
 
 You can then test if gyatt is successfully included by running `git s`, which will then print out the message of git status.
 
