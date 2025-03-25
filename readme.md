@@ -32,6 +32,12 @@ Another good idea, along the same lines but in reverse, would be to make all gya
 
 It seems to me like an ideal state of affairs would be for git to take the good parts of gyatt (and I think they're all good, to be clear, but de gustibus et coloribus non est disputandum) and incorporate them as official parts of git, possibly entirely obsoleting gyatt in the process. But I'm not holding my breath about this, especially because I've expended literally no effort towards making it happen, myself.
 
+## how to examine gyatt commands
+
+`git help foo` will show you the documentation for foo, including the full text of foo if foo is an alias, which most gyatt commands are. Gyatt also provides `git text`, which is much like `git help`, except it will also show the origin file of the alias (which is useful if you have many gitconfig files active).
+
+If a gyatt command is not an alias, just look in its script I guess.
+
 ## other software somewhat like gyatt
 
 I've recently discovered Git Extras ( (dis)claimer: and contributed a couple improvements to it ), which is a similar project to gyatt. For example, both gyatt and Git Extras have a `git touch` command, because great minds think alike https://github.com/tj/git-extras/blob/main/Commands.md . However, there are differences: for example, gyatt has `git chmod` and `git whoami`; Git Extras has `git repl` and `git abort`. (But not `git continue`? Odd. I would love to have a `git continue`, that continues the current revert, rebase, merge or cherry-pick, without the need to find exact command in history.) So, they both have independently-useful features. If I were more ambitious I would maybe try to contribute all of Gyatt to Git Extras, thus making it Not My Problem (although, simultaneously acquiring an interest in Git Extras (using it every day) that would make Git Extras a little bit more of My Problem). As it stands, I think they're both pretty good projects (or at least seem to me to be — caveat emptor and all that) and you should install both.
