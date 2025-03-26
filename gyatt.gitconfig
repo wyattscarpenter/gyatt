@@ -25,6 +25,7 @@
 	chomd = chmod
 	choose = patch # joke comment: invokes the axiom of choice.
 	clear = git move @ #git extras also has a git clear, which takes priority over this, which is basically this + `git clean` (removes untracked files)
+	cm = cum
 	conforg = config --show-origin
 	create-github-repo = make-github-repo
 	cum = commit --all --message # Like git gacm, but without the add --all step # Fun fact: Latin for "with", which is what we're doing... committing with everything (for a limited sense of everything).
