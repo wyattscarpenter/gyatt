@@ -7,6 +7,6 @@ repo_name="${2:-${git_root_name:-$pwd_name}}"
 
 echo This will ask you for your github token, then probably your username and token again.
 # This && does not actually catch the common failure case where authentication fails, alas, because curl still successfully retrieves a value (a json saying authentication failed.
-curl -u "$user_name" https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}" && \ 
+curl -u "$user_name" https://api.github.com/user/repos -d "{\"name\":\"$repo_name\"}" && \
 git remote add origin "https://github.com/$user_name/$repo_name.git" && \
 git push --set-upstream origin master
