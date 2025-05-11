@@ -108,6 +108,8 @@
 	auto = 0 # Disables automatic garbage collection. See Gyatt readme for more on why this is a good idea.
 [init]
 	defaultBranch = master
+[notes]
+	rewriteRef = refs/notes/* # Provisional default. See Gyatt readme for more info.
 [rebase]
 	rebaseMerges = true
 [rerere]
