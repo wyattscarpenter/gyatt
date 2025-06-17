@@ -16,4 +16,6 @@ header ORIGIN
 header "NO""CHECKINS"
   export LC_ALL=C #this is just a funny hack to get grep to go faster. I'm not sure it actually does anything for the git-internal grep.
   git "no""checkins"
+header "GIT STASH LIST"
+  git stash list
 echo
