@@ -1,0 +1,12 @@
+#!/bin/bash
+
+pip-publish() {
+  pip install -U build twine && python -m build && twine upload --skip-existing dist/*
+  # Could, instead use uv build && uv publish here, but would need option to tell it to use token, and option to tell it to skip existing... (it currently just exits after the first one?! I guess the idea is you use --check-url, and point it at the index you're about to upload to) # uv "bublish", lol
+}
+
+version=v`uv version --short`
+read -p "Publishing as version $version once you press enter..."
+# These are set up in approximate order of when you might want to be alerted that something is wrong.
+#   Although it's hard to say that order holds exactly all the time.
+git push && git tag "$version" && git push --tag && pip-publish
