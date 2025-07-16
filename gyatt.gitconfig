@@ -48,6 +48,7 @@
 	gnome = rebase -i --rebase-merges --root # he's playing like a gnome / gently taking each seed and germinating it in a single sunlit jar placed alone upon a stump with just enough sky about it, before planting it alone in the perfect spot on the forest trails known only to him — Dayne #Update: rebasing like this is not something that git is good at in non-trivial cases. The gnome is bad.
 	l = log
 	list-all-notes = ! git notes | cut -d' ' -f2 | xargs -ihash git log hash -1 # Yet another crucial piece of functionality git does not provide. Thanks for the workaround, BetaRide! https://stackoverflow.com/questions/20324417/git-get-all-notes-of-a-branch
+	list-all-notes1 = ! git notes | cut -d' ' -f1 | xargs git show #OK, so, uh, this name is bad, but sometimes you lose all the commits the notes pointed to, like because the setting that prevents that from happening isn't set so instead of just listing the commits you have to list the notes themselves. The regular list all notes will just give you bad object errors and you have to use this instead.
 	ll = log -5
 	ln = ! git-ln
 	ls = ls-files --stage --abbrev -t --exclude-standard  ':(glob)*'
@@ -81,6 +82,8 @@
 	s = status
 	sa = stash list
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
+	show-all-notes = list-all-notes
+	show-all-notes1 = list-all-notes1
 	sl = stash list # unfortunately, not the popular "steam locomotive" binary #might get rid of this later
 	ss = s -s
 	signoff = ! git-signoff # I get a mysterious "end-of-file" error if I try to inline this.
