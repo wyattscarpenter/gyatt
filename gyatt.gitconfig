@@ -11,6 +11,7 @@
 	b = branch --verbose
 	bash = ! bash -c # This allows me to execute commands in the bash that comes bundled with git-for-windows, if need be (the need is quite rare. Note that you typically have to quote the argument to this. Eg, git bash "python -m rich". Because otherwise they're just further arguments to bash I guess.
 	be = ! git-be
+	blone = clone --filter=blob:none # blobless clone; good for working casually with repos with large files in history. For more info, see https://github.blog/open-source/git/get-up-to-speed-with-partial-clone-and-shallow-clone/ #see also: scone. # part of me wants to name this command "plone", but so far I have resisted the urge.
 	br = b
 	blast = ! git-blast
 	c = commit # see also: cm, cam, cum, gacm.
@@ -82,6 +83,7 @@
 	root = rev-parse --show-toplevel
 	s = status
 	sa = stash list
+	scone = clone --depth 2 --shallow-submodules --recurse-submodules # This creates a shallow clone, including shallow (but actually-cloned, which is nice) submodules. We use depth 2 instead of the traditional depth 1 because I find it's often nice to have a little bit of room there, for various commands. # This is called "scone" because I quickly thought of many possible aliases, basically the regex sh?c?l?one, so I forced myself to only pick the best one (scone). # See also: blone.
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
 	show-all-notes = list-all-notes
 	show-all-notes1 = list-all-notes1
