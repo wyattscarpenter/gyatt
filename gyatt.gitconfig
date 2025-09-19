@@ -27,7 +27,7 @@
 	chomd = chmod
 	choose = patch # joke comment: invokes the axiom of choice.
 	clear = git move @ #git extras also has a git clear, which takes priority over this, which is basically this + `git clean` (removes untracked files)
-	close = ! curr_branch=`git branch --show-current` git checkout `git config init.defaultBranch` && git branch --delete # like all deletes, this only deletes if merged. The concept behind this for me is that you've pushed to remote and then you close your local copy of the branch.
+	close = ! curr_branch=`git branch --show-current` git checkout `git config init.defaultBranch` && git branch --delete "$curr_branch" # like all deletes, this only deletes if merged. The concept behind this for me is that you've pushed to remote and then you close your local copy of the branch.
 	cm = commit --message # Like git gacm, but without the add --all step # See also: git cam, git cum
 	conforg = config --show-origin
 	create-github-repo = make-github-repo
