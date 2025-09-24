@@ -75,6 +75,7 @@
 	po = push --set-upstream origin HEAD
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
+	plose = ! git push && git close
 	r = remote -v
 	reb = rebase
 	rebcont = ! git diff --check && git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
