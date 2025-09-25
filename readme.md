@@ -161,6 +161,10 @@ One of the weird things about git is that when you're a novice you don't underst
 
 I might look into using jj instead some time.
 
+## license
+
+Except where otherwise noted, Gyatt is in the public domain. CC0 in the license file formalizes this.
+
 ## contributing
 
 If you want to contribute to this project, first of all: thanks! Second of all, please note that your contributions will be released into the public domain under the license of this project. Third of all, note that you should probably use the full names of flags for commands, as this will save everyone a lot of time when trying to figure out what the command does. and, fourthly, note that I reserve the right to be a terrible maintainer, take a long time to review everything, and reject your very sensible changes because they aren't exactly precisely what I want for this project — or even just out of mere caprice!
