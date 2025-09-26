@@ -85,7 +85,7 @@
 	root = rev-parse --show-toplevel
 	s = status
 	sa = stash list
-	scone = clone --depth 2 --shallow-submodules --recurse-submodules # This creates a shallow clone, including shallow (but actually-cloned, which is nice) submodules. We use depth 2 instead of the traditional depth 1 because I find it's often nice to have a little bit of room there, for various commands. # This is called "scone" because I quickly thought of many possible aliases, basically the regex sh?c?l?one, so I forced myself to only pick the best one (scone). # See also: blone.
+	scone = clone --depth 2 --shallow-submodules --recurse-submodules # This creates a shallow clone, including shallow (but actually-cloned, which is nice) submodules. We use depth 2 instead of the traditional depth 1 because I find it's often nice to have a little bit of room there, for various commands. # This is called "scone" because I quickly thought of many possible aliases, basically the regex sh?c?l?one, so I forced myself to only pick the best one (scone). # See also: blone. # shallow clone jutsu. is that anything.
 	sh = show --word-diff=color #also might regret this alias one day as sh is also a shell.
 	show-all-notes = list-all-notes
 	show-all-notes1 = list-all-notes1
