@@ -83,8 +83,6 @@ Gyatt's du uses a feature that is a GNU extension of du, as far as I can tell (c
 
 ## warnings
 
-TODO: can you always push all objects? like tags and notes? not just the branch?. I guess push.followTags will make git push tags as well as fetch them. Notes is a half-baked feature so I guess you just have to explicitly push notes, unless maybe this configuration I haven't looked into actually works: https://gist.github.com/topheman/ec8cde7c54e24a785e52
-
 Gyatt enables rerere, which is usually turned off by default in git. If this ever causes you a problem, please explain it to me — to me, currently, rerere seems like a crucial git feature that is erroneously turned off for no reason. Yes, I have read the blog post about its strange behavior that might justify keeping it turned off by default. No, I didn't find it convincing (it doesn't elaborate on its consequences). For more information, you — like me — can see https://gitster.livejournal.com/41795.html and https://stackoverflow.com/questions/5519244/are-there-any-downsides-to-enabling-git-rerere . If anything, it seems like the problem of rerere is that it doesn't rerere *enough*. Another problem is that maybe it rereres *too much*, but I haven't encountered a case like this.
 
 Gyatt sets rebase.rebaseMerges to true, because I always want to "rebase merges" (preserve branch structure in a rebase, by creating merge commits by replaying the appropriate merges) when I rebase. It isn't set to rebase-cousins because I don't really understand what that would do or why I would want it and I've never been dissatisfied with how rebase --rebase-merges seems to treat "cousins", despite being a user of many very wacky branch structures myself. Anyway, you can easily countermand this by passing --no-rebase-merges (or --rebase-merges=rebase-cousins) to rebase. You can also unset this setting for yourself if you do so much merge-crushing on purpose that you find this whole needing-a-flag business inconvenient. Certain gyatt aliases may also use --rebase-merges internally. You may also countermand those if you wish.
@@ -132,6 +130,16 @@ Gyatt *doesn't* do several things that might be useful to me, but possibly hosti
 If a gyatt command is not an alias, just look in its script I guess.
 
 `git bash echo $SOME_ENV_VAR`, using gyatt's provided `git bash` can also be helpful to investigate the behavior of git (when some git behavior is influenced by environment variables) (if git is, for you, like me, not located in your regular environment).
+
+## features i would like, but which i have not made & other to-dos
+
+* TODO: can you always push all objects? like tags and notes? not just the branch?. I guess push.followTags will make git push tags as well as fetch them. Notes is a half-baked feature so I guess you just have to explicitly push notes, unless maybe this configuration I haven't looked into actually works: https://gist.github.com/topheman/ec8cde7c54e24a785e52
+
+* There are various to-dos inline in the main gyatt file and others.
+
+* I would like a feature that's like git-add-regex or git-add-where, which stages lines if they match a regex or contain a hunk. Something like https://stackoverflow.com/a/63593719 except I can't install diffrep and naively trying to use regular grep instead does not seem to work.
+
+* I would like a feature that gets rid of annoying accidental whitespace changes that don't matter, such as to pretty up PRs. One solution for that would be, say, git-revert-commit-whitespace, which I tried to get chatgpt to write for me one fine sunny morn but do not have a successful version of.
 
 ## brief and irrelevant history
 
