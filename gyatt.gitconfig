@@ -27,7 +27,7 @@
 	chomd = chmod
 	choose = patch # joke comment: invokes the axiom of choice.
 	clear = git move @ #git extras also has a git clear, which takes priority over this, which is basically this + `git clean` (removes untracked files)
-	close = "! curr_branch=`git branch --show-current`; git checkout `git config init.defaultBranch` && git branch --delete \"$curr_branch\" # like all deletes, this only deletes if merged. The concept behind this for me is that you've pushed to remote and then you close your local copy of the branch."
+	close = "! git ch "$1"; curr_branch=`git branch --show-current`; git checkout `git config init.defaultBranch` && git branch --delete \"$curr_branch\" # like all deletes, this only deletes if merged. The concept behind this for me is that you've pushed to remote and then you close your local copy of the branch." #The first argument is optional, since a no-argument checkout is a no-op. # See also, plose, polose
 	cm = commit --message # Like git gacm, but without the add --all step # See also: git cam, git cum
 	conforg = config --show-origin
 	create-github-repo = make-github-repo
@@ -76,7 +76,7 @@
 	pfush = push --force-with-lease --force-if-includes # the safest type of force push
 	pffush = push --force-with-lease # the second-safest type of force push
 	plose = ! git ch "$1" && git push && git close
-	polose = ! git ch "$1" && git po && git close
+	polose = ! git ch "$1" && git po && git close # I'm pretty sure this is "unsafe", in that if you don't know if there is another branch on the remote with this name you shouldn't use this. This is only for when you're quite sure, which I often have been. But usually you should just use plose and see if there's a push conflict, because that is "safe".
 	r = remote -v
 	reb = rebase
 	rebcont = ! git diff --check && git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
