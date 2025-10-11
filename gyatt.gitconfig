@@ -109,6 +109,8 @@
 	wh = whoami
 	whoami = ! git config --get user.name && git config --get user.email
 	whomami = whoami
+[core]
+	longpaths = true
 [commit]
 	verbose = true
 [credential]
