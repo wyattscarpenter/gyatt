@@ -171,6 +171,10 @@ I might look into using jj instead some time.
 
 The concept of making a small core of git commands appeals to me. Sort of like jj (might build it as jj aliases), but in a way that I think makes sense. Applying deltas to things might use the verb "delt". There might be an explicit "reparent" command. Instead of conflating commits and the deltas of those commits with their parents, as git so often does. Branch is fine, though. master is master. Rebase would be, like, what, just delt with multiple commits? Squash would be a proper action and not just something we pretend is a flag to merge. We may need a theory of patches here, idk.
 
+If I were solving this problem, I'd also like to solve, along the way, for good, the problem of how semver and commits do not progress in lockstep; instead, every commit should increment the patch version. Or at least its metadata should say x.y.z-dev for the patch version it's working towards (although that might be skipped if instead you increment minor or major). Or, perhaps a different method altogether would be called for.
+
+I would like git to track more file metadata. Like tags. I like the idea of tagging files. Shame many file systems don't support that.
+
 ## license
 
 Except where otherwise noted, Gyatt is in the public domain. CC0 in the license file formalizes this.
