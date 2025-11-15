@@ -103,7 +103,7 @@
 	text = ! git conforg alias."$1" || echo "No alias for" # This will show you the full text of the alias, much like git help, but also its origin.
 	timend = ! GIT_COMMITTER_DATE="$1" git commit --amend --no-edit --date #amend, with a new time passed as an argument (it gets applied once as $1 and applied once as appended to the end of the list, where "--date" expects it as an argument). You can see the current AuthorDate and CommitDate with `git l --pretty=fuller -1`. Regular amend only adjusts the committer date (but always sets it to the present). Git is pretty picky about what date formats it accepts. The easiest for me is something like "2024-09-11 12:58:24". See https://git-scm.com/docs/git-commit#_date_formats for more.
 	todo = grep --line-number -i \\\\bto""do\\\\b # I don't really understand why you need to quadruple backslash here, instead of 1 or 2, but ok. The "" in the middle is just so that it doesn't pick up itself, which I do where I can (not on the left side, for example; it's impossible there).
-	touch = ! touch "$@" && git add "$@"
+	touch = ! touch "$@" && git add "$@" #TODO: this seems to create multiple files if I try to git touch a file with spaces on windows (eg `git touch "foo bar.txt"` makes foo and bar.txt).
 	touchx = ! touch "$@" && git add --chmod=+x "$@"
 	# TODO: I would like a "git undo" command that undoes the last git command (not to be confused with Git Extra's "git undo", which just removes the latest (n) commits, sadly) with full generality. Unfortunately this would be very hard to make. The closest thing would be moving to back in the reflog, which is better than nothing but still a poor substitute. So, I probably will never achieve git undo. Ah, well.
 	u = add -u
