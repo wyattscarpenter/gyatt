@@ -157,6 +157,8 @@ Ah... while investigating [another crippling insufficiency of git](https://stack
 
 ## mutterings about future projects
 
+gyote would be a good name for a third project in this trilogy (git-gyatt-gyote).
+
 A git ui that isn't bad if I ever make one of those. Oh My Git, while a game, is actually pretty good as a git ui. Limited in some ways, of course. Also, it's a fairly good way to learn git concepts, I expect! (I played it after I had mastered git so I can't attest firsthand.)
 
 One of the weird things about github is that most of their value-adds are things you could technically do in git repos already, like wikis and issue tracking. So, anyway, I'm thinking I could create a git tool that just does that stuff in git, maybe it could be in here as well (you could gyatt open an issue from the command line, etc). I guess there are already a lot of projects that do those things, though.
@@ -171,7 +173,7 @@ One of the weird things about git is that when you're a novice you don't underst
 
 I might look into using jj instead some time.
 
-The concept of making a small core of git commands appeals to me. Sort of like jj (might build it as jj aliases), but in a way that I think makes sense. Applying deltas to things might use the verb "delt". There might be an explicit "reparent" command. Instead of conflating commits and the deltas of those commits with their parents, as git so often does. Branch is fine, though. master is master. Rebase would be, like, what, just delt with multiple commits? Squash would be a proper action and not just something we pretend is a flag to merge. We may need a theory of patches here, idk.
+The concept of making a small core of git commands appeals to me. Sort of like jj (might build it as jj aliases), but in a way that I think makes sense. Applying deltas to things might use the verb "delt". There might be an explicit "reparent" command. Instead of conflating commits and the deltas of those commits with their parents, as git so often does. Branch is fine, though. master is master. Rebase would be, like, what, just delt with multiple commits? (I personally just think of rebase as applying a string of diffs, at this point, but it's famously hard for newbies to figure out what "rebase" means.) Squash would be a proper action and not just something we pretend is a flag to merge (it doesn't make a merge commit!). We may need a theory of patches here, idk.
 
 If I were solving this problem, I'd also like to solve, along the way, for good, the problem of how semver and commits do not progress in lockstep; instead, every commit should increment the patch version. Or at least its metadata should say x.y.z-dev for the patch version it's working towards (although that might be skipped if instead you increment minor or major). Or, perhaps a different method altogether would be called for.
 
