@@ -189,8 +189,8 @@ If you want to contribute to this project, first of all: thanks! Second of all, 
 
 ## coda
 
-And remember the ancient wisdom: “a voluptuous charmer takes food; a scoundrel is cursed to dwell restlessly in strange places”.
+And remember the ancient wisdom: “a voluptuous charmer takes food; a scoundrel is cursed to dwell restlessly in strange places”[.](https://www.youtube.com/watch?v=JkcbeMnLc40)
 
 ## coda 2
 
-Lil Gyatty laptop.
+Lil Gyatty laptop[.](https://www.reddit.com/r/MemeRestoration/comments/utvtib/drake_helping_lil_yachty_hd/)
