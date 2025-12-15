@@ -133,6 +133,8 @@ If a gyatt command is not an alias, just look in its script I guess.
 
 ## features i would like, but which i have not made & other to-dos
 
+* I would very much like to have an exact "reparent" command, like rebase but for commits and not deltas, which is currently impossible in git and I might have to write my own from the bottom-up. I may use https://wyag.thb.lt/ as a base for that, going forward. And then just make it a script that lives in this folder, probably.
+
 * header is still not cross-platform, very confusingly.
 
 * TODO: can you always push all objects? like tags and notes? not just the branch?. I guess push.followTags will make git push tags as well as fetch them. Notes is a half-baked feature so I guess you just have to explicitly push notes, unless maybe this configuration I haven't looked into actually works: https://gist.github.com/topheman/ec8cde7c54e24a785e52
