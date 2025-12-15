@@ -20,8 +20,6 @@ I have never lost data due to a bug in gyatt. (This should not be taken to be an
 
 There are some features that don't work in Gyatt, and some features that I still hope to implement, but what software project doesn't have some of those?
 
-header is still not cross-platform, very confusingly.
-
 I will continue to make fearless, backwards-incompatible changes to Gyatt during its development and maintenance. If this actually creates a problem for someone, let me know; I'll usually be happy to keep a depricated alias in indefinitely unless it ruins something else. Gyatt is currently versioned only implicitly, by git commit hash of the Gyatt repo. If you're interested in adopting Gyatt, and it would help you if I adopted a semver system, or more of a formal changelog, let me know, and we can work something out. These are things that I can do, and theoretically could be valuable to someone, but I'm not going to preemptively do so long as I have zero external users.
 
 By the way, Gyatt has no tests. It's been working out pretty well so far. Especially because Gyatt is so simple, for a software project. A wise man, or possibly an idiot, once said to me that all software projects are tested; it's just that sometimes the software is tested by the end users. Currently, I am the end user, and I have a pretty good idea of what in Gyatt works, based on my normal git working habits.
@@ -134,6 +132,8 @@ If a gyatt command is not an alias, just look in its script I guess.
 `git bash echo $SOME_ENV_VAR`, using gyatt's provided `git bash` can also be helpful to investigate the behavior of git (when some git behavior is influenced by environment variables) (if git is, for you, like me, not located in your regular environment).
 
 ## features i would like, but which i have not made & other to-dos
+
+* header is still not cross-platform, very confusingly.
 
 * TODO: can you always push all objects? like tags and notes? not just the branch?. I guess push.followTags will make git push tags as well as fetch them. Notes is a half-baked feature so I guess you just have to explicitly push notes, unless maybe this configuration I haven't looked into actually works: https://gist.github.com/topheman/ec8cde7c54e24a785e52
 
