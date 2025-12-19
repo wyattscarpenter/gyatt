@@ -85,7 +85,7 @@
 	reb = rebase
 	rebcont = ! git diff --check && git add -u && git -c core.editor=true rebase --continue # continue a rebase or merge without editing the message. See https://stackoverflow.com/questions/43489971/how-to-suppress-the-editor-for-git-rebase-continue
 	rebforsake = ! git checkout --theirs . && git rebcont # This command is for when there's a conflict in the middle of a rebase and you want to just let the other changes (say, from upstream) win instead of manually reconciling them. #todo: also make mergecont and mergeforsake? # todo: I'm not sure this is a good name for it. # TODO: also, I think this might be a bad command, because it's, well, it does what it says, which is kind of foolhardy...
-	rebhelp = ! echo 'I always forget the order of rebase arguments. git rebase X rebases the current branch onto X; git rebase X Y checks out Y and then rebases it onto X.'
+	rebhelp = ! echo I always forget the order of rebase arguments. git rebase X rebases the current branch onto X. git rebase X Y checks out Y and then rebases it onto X.
 	remove-file-from-history = ! git-remove-file-from-history
 	replace-in-history = ! git-replace-in-history
 	root = rev-parse --show-toplevel
