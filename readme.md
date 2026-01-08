@@ -143,7 +143,7 @@ If a gyatt command is not an alias, just look in its script I guess.
 
 * I would like a feature that's like git-add-regex or git-add-where, which stages lines if they match a regex or contain a hunk. Something like https://stackoverflow.com/a/63593719 except I can't install diffrep and naively trying to use regular grep instead does not seem to work.
 
-* I would like a feature that gets rid of annoying accidental whitespace changes that don't matter, such as to pretty up PRs. One solution for that would be, say, git-revert-commit-whitespace, which I tried to get chatgpt to write for me one fine sunny morn but do not have a successful version of.
+* I would like a feature that gets rid of annoying accidental whitespace changes that don't matter. For example, this often can add undesired "noise" to PRs. One solution for that would be, say, git-revert-commit-whitespace, which I tried to get chatgpt to write for me one fine sunny morn but do not have a successful version of. Possible further resource (an option to the default merge strategy): https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging.html#_ignoring_whitespace
 
 ## brief and irrelevant history
 
