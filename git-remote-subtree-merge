@@ -1,13 +1,14 @@
 #!/bin/bash
 
 echo "ERROR: NEVER USE GIT SUBTREE. GIT STILL DOES NOT SUPPORT IT PROPERLY. THEREFORE THIS COMMAND HAS BEEN DISABLED FOR YOUR PROTECTION.
-For more information, you can check out https://web.archive.org/web/20200219001959/http://git.661346.n2.nabble.com/subtree-merges-lose-prefix-after-rebase-td7332850.html  https://stackoverflow.com/questions/12858199/how-to-rebase-after-git-subtree-add, https://marc.info/?l=git&m=133062667420408, or
+For more information, you can check out https://web.archive.org/web/20200219001959/http://git.661346.n2.nabble.com/subtree-merges-lose-prefix-after-rebase-td7332850.html, https://stackoverflow.com/questions/12858199/how-to-rebase-after-git-subtree-add, or https://marc.info/?l=git&m=133062667420408 (the first and last sources here seem to be different mirrors of the same conversation).
 The best strategy for dealing with subtree-like operations (if you can't just use a git submodule) is making one commit that moves all of the files into a subdirectory and then doing a regular merge. This command could easily be altered to do that instead, but I haven't bothered."
+exit -1
 
 set -euo pipefail #bash strict mode
 if ( [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ) ; then
   if [ "$#" -eq 1 ] ; then
-    cd "$1" || ( echo "Not enough arguments and given argument is not a local folder than can be cd'd to." && exit 22)
+    cd "$1" || ( echo "Not enough arguments and given argument is not a local folder that can be cd'd to." && exit 22)
     echo 'Branches on the remote, to choose from (for the required second parameter):'
     git branch --verbose
     exit 22 #usage message for invalid number of arguments
