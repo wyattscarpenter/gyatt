@@ -1,23 +1,48 @@
 #!/bin/bash
-
-echo "ERROR: NEVER USE GIT SUBTREE. GIT STILL DOES NOT SUPPORT IT PROPERLY. THEREFORE THIS COMMAND HAS BEEN DISABLED FOR YOUR PROTECTION.
-For more information, you can check out https://web.archive.org/web/20200219001959/http://git.661346.n2.nabble.com/subtree-merges-lose-prefix-after-rebase-td7332850.html, https://stackoverflow.com/questions/12858199/how-to-rebase-after-git-subtree-add, or https://marc.info/?l=git&m=133062667420408 (the first and last sources here seem to be different mirrors of the same conversation).
-This is part of git's general strategy for not being able to handle merges, rebases, history, etc.
-The best strategy for dealing with subtree-like operations (if you can't just use a git submodule) is making one commit that moves all of the files into a subdirectory and then doing a regular merge. This command could easily be altered to do that instead, but I haven't bothered."
-exit -1
+#Maybe I should rename this command to something like "git subsume" or "git folder" or something?
+echo "Welcome to git-remote-subtree-merge, an appendage of the Gyatt project. This message is here to explain the command, as it's different from other git things with a similar name. If you don't want to do what I'm about to describe, git CTRL-C to cancel the operation. Every other input will allow the command. Here's what this command does:
+  SUMMARY: The end result of this command is merging another git repo's history into yours, leaving the current state of that repo as a subdirectory in your repo. To do so, an additional commit is made in that foreign history, to put it all into a subdirectory, and then that commit is merged into your master.
+  USAGE: git-remote-subtree-merge remote_to_merge_as_subfolder branch_name_in_remote [name_for_subfolder]
+  1. Compute a name, r, that is the optional third argument, or (if that is not present) the basename of the first argument.
+    • The basename makes sense because that other project probably had a different name than your project — they are likely different projects that you're merging together. And this is likely reflected in the URL that has to be the argument, like https://github.com/johnson/example. I say URL, but it could also be another folder on your local computer, which would also make the basename make sense. But, anyway, if it's not true for you that you want the folder name to be the same as the name of the project on the remote (as best as basename can figure it), well, that's why we give you the optional third argument.
+  2. Add the first argument as a remote. The name of this remote will be r.
+  3. Fetch that remote.
+  4. Checkout the remote-tracking branch where the remote name is r and the branch name is the second argument to git-remote-subtree-merge. This will create a local branch on your device, which will have a new name consisting of r, underscore, remote branch name. If this was already a local branch name for you, the script will fail on this step. For clarity, let's call this local branch r2.
+  5. (HEAD is at r2) git mv everything into a folder named r. Make sure this folder doesn't exist in your regular project, by the way!
+  6. (HEAD is at r2) Commit this, using an automatic commit message.
+  7. git checkout master. This step is hardcoded, you cannot retarget it. This is because it was inconvenient for me to figure out how to retarget it.
+  8. (HEAD is at master) git merge r2. This will prompt you to write your own git commit message for the merge or accept the default, like normal.
+  9. Remove the local branch r2, since we don't need it any more.
+  10. Remove the remote r, since we don't need it any more.
+  (I forget if we need to prune additional stuff after this. If so, someone should let me know.)
+  Warning: this command is untested. But it might work. 😎
+  Note that this command is different from *both* git-subtree merge (https://manpages.debian.org/testing/git-man/git-subtree.1.en.html#COMMANDS) *and* git-merge -s subtree (https://git-scm.com/docs/git-merge#Documentation/git-merge.txt-subtree). The concept is similar to those two commands, but those commands create 'evil' merges that git can't rebase later (this is part of git's general strategy for not being able to handle merges, rebases, history, etc). In my opinion, you should never use those commands, because git doesn't really support them properly, and probably never will support them properly — although, in a pinch, git rebase --rebase-merges --strategy subtree might allow you to recover from certain situations if you already have used one of those. For more information on why those commands produce unfortunate results, you can check out https://web.archive.org/web/20200219001959/http://git.661346.n2.nabble.com/subtree-merges-lose-prefix-after-rebase-td7332850.htmland https://stackoverflow.com/questions/12858199/how-to-rebase-after-git-subtree-add, or https://marc.info/?l=git&m=133062667420408. Anyway, in contrast to those commands (but vaguely similar to them), what this command does is use an additional regular commit that moves all of the files into a subdirectory, which means that the resulting history will play nice with everything else in the future.
+  'Subtree' is git for 'subdirectory', by the way; that's why these things are called that.
+  If you're using this tool, you might want to think about if git submodule is better suited for your needs. It's probably much better for ongoing dependencies that you want to update, rather than a different project that you want to subsume into your current project.
+"
+read -p "Continue with git-remote-subtree-merge? [(y)es to continue, anything else to exit with error]: "
+if [[ ! $REPLY =~ ^[Yy][Ee]?[Ss]?$ ]]
+then
+  exit -1
+fi
 
 set -euo pipefail #bash strict mode
 if ( [ "$#" -lt 2 ] || [ "$#" -gt 3 ] ) ; then
-  if [ "$#" -eq 1 ] ; then
-    cd "$1" || ( echo "Not enough arguments and given argument is not a local folder that can be cd'd to." && exit 22)
-    echo 'Branches on the remote, to choose from (for the required second parameter):'
-    git branch --verbose
-    exit 22 #usage message for invalid number of arguments
-  else
     echo USAGE: "$0 remote_to_merge_as_subfolder branch_name_in_remote [name_for_subfolder]" && echo && echo "IMPLEMENTATION:" && cat "$0" && echo && exit 22 #usage message for invalid number of arguments
   fi
 fi
 
-b="${3:-`basename $1`}"
+r="${3:-`basename $1`}"
+r2="$r"_"$2"
 
-git subtree add --prefix="$b" "$1" "$2"
+# This code was inspired and instructed by https://git-scm.com/book/en/v2/Git-Tools-Advanced-Merging.html#_subtree_merge, but it does a different thing, ultimately.
+
+git remote add "$r" "$1"
+git fetch "$r"
+git checkout "$r"/"$2" -b "$r2"
+git mv . "$r"/
+git commit -am "Move everything into $r/"
+git checkout master
+git merge "$r2" --allow-unrelated-histories
+git branch --delete "$r2"
+git remote remove "$r"
