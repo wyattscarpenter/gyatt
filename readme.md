@@ -137,7 +137,7 @@ If a gyatt command is not an alias, just look in its script I guess.
 
 * TODO: can you always push all objects? like tags and notes? not just the branch?. I guess push.followTags will make git push tags as well as fetch them. Notes is a half-baked feature so I guess you just have to explicitly push notes, unless maybe this configuration I haven't looked into actually works: https://gist.github.com/topheman/ec8cde7c54e24a785e52
 
-* There are various to-dos inline in the main gyatt file and others.
+* There are various to-do items inline in the main gyatt file and others. Use the relevant gyatt command to find these.
 
 * I would like a feature that's like git-add-regex or git-add-where, which stages lines if they match a regex or contain a hunk. Something like https://stackoverflow.com/a/63593719 except I can't install diffrep and naively trying to use regular grep instead does not seem to work.
 
