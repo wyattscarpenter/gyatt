@@ -4,6 +4,8 @@ underline_quine () {
 }
 header STATUS
   git status
+header BRANCHES
+  git b
 header LOGHEAD
   git log -n 1
 header 'IDENTITY & CREDENTIAL CONFIGS'
